@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 function FoodList(props) {
-  const emptyMessage = <p>There are no foods in your list.</p>;
-  const foodList = <p>empty2</p>;
   return (
     <>
       <div>{props.name}</div>

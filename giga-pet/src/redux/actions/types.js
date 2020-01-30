@@ -1,0 +1,2 @@
+export const FETCH_FOOD_POSTS = "FETCH_FOOD_POSTS";
+export const NEW_FOOD_POST = "NEW_FOOD_POST";
