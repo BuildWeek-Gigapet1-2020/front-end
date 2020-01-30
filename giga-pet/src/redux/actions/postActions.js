@@ -8,3 +8,14 @@ export const fetchFoodPosts = () => dispatch => {
       })
     );
 };
+
+export const newFoodPosts = () => dispatch => {
+  api()
+    .get(/* put api link here */)
+    .then(res =>
+      dispatch({
+        type: NEW_FOOD_POST,
+        payload: res.data
+      })
+    );
+};
