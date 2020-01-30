@@ -1,11 +1,20 @@
-import React from 'react'
+import React from "react";
+import { connect } from "react-redux";
+import FoodList from "./FoodList";
 
-function Food() {
-    return (
-        <div>
-            
-        </div>
-    )
+function Food(props) {
+  return <div>hello</div>;
 }
 
-export default Food
+// Food.propTypes = {
+//   food: React.propTypes.array.isRequired
+// };
+
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    // food: state.food
+  };
+}
+
+export default connect(mapStateToProps)(Food);

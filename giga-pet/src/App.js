@@ -3,6 +3,7 @@ import "./App.css";
 import Login from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/SignUp";
 import { Route, withRouter, Link } from "react-router-dom";
+import FoodList from "./components/FoodList/FoodList";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <div className="App">
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/foodlist" component={FoodList} />
       </div>
     </div>
   );
