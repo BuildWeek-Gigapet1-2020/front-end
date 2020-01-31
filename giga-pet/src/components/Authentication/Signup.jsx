@@ -30,7 +30,7 @@ function SignUp(props) {
 
   const [data, setData] = useState({
     username: "",
-    name: "",
+    parent_name: "",
     email: "",
     password: ""
   });
@@ -68,7 +68,7 @@ function SignUp(props) {
         />
         <input
           type="text"
-          name="name"
+          name="parent_name"
           placeholder="Name"
           value={data.name}
           className="signup-field"
