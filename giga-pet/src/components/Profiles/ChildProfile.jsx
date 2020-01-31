@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Route, Link } from "react-router-dom";
-import FoodForm from "../FoodList/FoodForm";
+import React from "react";
+import { Link } from "react-router-dom";
+// import FoodForm from "../forms/FoodForm";
 import Child from "../Users/Child";
 
 function ChildProfile() {
@@ -8,10 +8,12 @@ function ChildProfile() {
     <div className="wrapper">
       <Child />
 
-      <Route exact path="/add-food"></Route>
+      <Link to="add-child">Add Child</Link>
+
+      {/* <Route exact path="/add-food"></Route>
       <Link to="/add-food" component={FoodForm}>
         Submit
-      </Link>
+      </Link> */}
     </div>
   );
 }

@@ -4,6 +4,8 @@ import Login from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/SignUp";
 import { Route, withRouter, Link } from "react-router-dom";
 import FoodList from "./components/FoodList/FoodList";
+import ChildProfile from "./components/Profiles/ChildProfile";
+import ChildForm from "./components/forms/ChildForm";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/foodlist" component={FoodList} />
+        <Route exact path="/childprofile" component={ChildProfile} />
+        <Route exact path="/add-child" component={ChildForm} />
       </div>
     </div>
   );
