@@ -1,16 +1,114 @@
-import React from "react";
+// import React from "react";
 
-function Signup() {
+// function Signup() {
+//   return (
+//     <form>
+//       <input name="parent-name" placeholder="Parent Name" type="text" />
+//       <input name="username" placeholder="Username" type="text" />
+//       <input name="email" placeholder="Email" type="text" />
+//       <input name="password" placeholder="Password" type="password" />
+
+//       <button type="submit">Submit</button>
+//     </form>
+//   );
+// }
+
+// export default Signup;
+
+import React, { useState } from "react";
+// import api from '../utils/api';
+
+// import { initialState, reducer } from '../../reducer/loginReducer';
+
+import { register } from "../../redux/actions/userActions";
+import { connect } from "react-redux";
+
+function SignUp(props) {
+  // console.log('login props', props)
+
+  const [err, setErr] = useState("");
+
+  const [data, setData] = useState({
+    username: "",
+    name: "",
+    email: "",
+    password: ""
+  });
+
+  const handleChange = event => {
+    setData({
+      ...data,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    props.register(data, props);
+    console.log("props.history", props.history);
+  };
+
   return (
-    <form>
-      <input name="parent-name" placeholder="Parent Name" type="text" />
-      <input name="username" placeholder="Username" type="text" />
-      <input name="email" placeholder="Email" type="text" />
-      <input name="password" placeholder="Password" type="password" />
+    <div className="signup-form">
+      <form
+        onSubmit={handleSubmit}
+        disabled={props.loading}
+        className={props.loading ? "transparent" : "regular"}
+      >
+        {err && <div className="err">{err}</div>}
 
-      <button type="submit">Submit</button>
-    </form>
+        <input
+          type="text"
+          name="username"
+          placeholder="username"
+          value={data.username}
+          className="signup-field"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={data.name}
+          className="signup-field"
+          onChange={handleChange}
+        />
+
+        <input
+          type="text"
+          name="email"
+          placeholder="Email"
+          value={data.email}
+          className="signup-field"
+          onChange={handleChange}
+        />
+
+        <input
+          type="text"
+          name="password"
+          placeholder="password"
+          value={data.password}
+          className="signup-field"
+          onChange={handleChange}
+        />
+
+        <button
+          className="signup-button"
+          disabled={props.loading}
+          type="submit"
+        >
+          Sign Up
+        </button>
+      </form>
+    </div>
   );
 }
 
-export default Signup;
+function mapStateToProps(state) {
+  return {
+    loading: state.loading
+  };
+}
+
+export default connect(mapStateToProps, { register })(SignUp);
