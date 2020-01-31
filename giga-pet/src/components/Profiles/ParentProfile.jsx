@@ -1,17 +1,18 @@
-import React from 'react';
-import { Route, Link } from 'react-router-dom';
-import Parent from '../Users/Parent';
+import React from "react";
+import { Link } from "react-router-dom";
+import Parent from "../Users/Parent";
+// import Child from "../Users/Child";
 
 function ParentProfile() {
-    return (
-        <div className="wrapper">
-            <Parent />
+  return (
+    <div className="wrapper">
+      <Parent />
+      {/* <Route exact path="/child/:id"></Route>
+            <Link to="/child/:id" ></Link> */}
 
-            <Route exact path="/child/:id"></Route>
-
-            <Link to="/child/:id" ></Link>
-        </div>
-    )
+      <Link to="add-child">Add Child</Link>
+    </div>
+  );
 }
 
 export default ParentProfile;

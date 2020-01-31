@@ -6,6 +6,7 @@ import { Route, withRouter, Link } from "react-router-dom";
 import FoodList from "./components/FoodList/FoodList";
 import ChildProfile from "./components/Profiles/ChildProfile";
 import ChildForm from "./components/forms/ChildForm";
+import ParentProfile from "./components/Profiles/ParentProfile";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route exact path="/foodlist" component={FoodList} />
         <Route exact path="/childprofile" component={ChildProfile} />
         <Route exact path="/add-child" component={ChildForm} />
+        <Route exact path="/parent-profile" component={ParentProfile} />
       </div>
     </div>
   );
