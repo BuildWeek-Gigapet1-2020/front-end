@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.loading {
+  background-image: url("./images/spinner.gif");
+  /* background-color: coral; */
+}
+
+.regular {
+  /* background-image: url("./images/spinner.gif"); */
+
+  background-color: coral;
+}
+
+form {
+  height: 200px;
+}

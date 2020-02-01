@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 function Login(props) {
   console.log("login props", props);
 
-  // const [err, setErr] = useState('');
+  const [err, setErr] = useState("");
 
   const [data, setData] = useState({
     username: "",
@@ -39,11 +39,10 @@ function Login(props) {
     <div className="login-form">
       <form
         onSubmit={handleSubmit}
-        disabled={
-          props.loading
-        } /* className={props.loading ? "transparent" : "regular"}*/
+        // disabled={props.loading}
+        className={props.isLoading ? "loading" : "regular"}
       >
-        {/* {err && <div className='err'>{err}</div>} */}
+        {err && <div className="err">{err}</div>}
         <div className="login-field">
           <input
             type="text"
@@ -71,8 +70,9 @@ function Login(props) {
 }
 
 function mapStateToProps(state) {
+  console.log("login state", state);
   return {
-    loading: state.loading
+    isLoading: state.userReducer.isLoading
   };
 }
 
