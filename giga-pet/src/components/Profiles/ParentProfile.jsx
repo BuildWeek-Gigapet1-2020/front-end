@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Parent from "../Users/Parent";
 // import Child from "../Users/Child";
 
@@ -8,8 +8,10 @@ function ParentProfile() {
     <div className="wrapper">
       <Parent />
 
-      {/* display each child that belongs to the current parent logged in
-      on this parent profile */}
+      {/* 
+        1) display each child that belongs to the current parent logged in
+        2) add new child button -> takes user to child form
+      */}
 
       {/* <Route exact path="/child/:id"></Route>
             <Link to="/child/:id" ></Link> */}
