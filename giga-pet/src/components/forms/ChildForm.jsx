@@ -1,9 +1,21 @@
 import React from "react";
 
 function ChildForm() {
+  // add useState
+
+  //   useEffect(() => {
+  //     api()
+  //       .get("/api/")
+  //       .then()
+  //       .catch();
+  //   }, []);
+
   // create onChange for form below
 
   // create onSubmit for form below
+
+  // add form validation
+  //    - for child name make sure the text typed in is a string and not a number
 
   return (
     <div>
