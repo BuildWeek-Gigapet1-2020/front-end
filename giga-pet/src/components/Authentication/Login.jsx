@@ -39,7 +39,8 @@ function Login(props) {
     <div className="login-form">
       <form
         onSubmit={handleSubmit}
-        // disabled={props.loading}
+        // class name below changes based on loading state
+        // this is handled with redux state management
         className={props.isLoading ? "loading" : "regular"}
       >
         {err && <div className="err">{err}</div>}
