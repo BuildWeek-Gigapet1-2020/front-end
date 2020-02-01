@@ -1,4 +1,4 @@
-import { LOADING, LOGIN_SUCCESS } from "../actions/types";
+import { LOADING, LOGIN_SUCCESS, NEW_USER_SUCCESS } from "../actions/types";
 const initialState = {
   isLoading: false
 };
@@ -12,6 +12,7 @@ export const userReducer = (state = initialState, action) => {
         isLoading: true
       };
     case LOGIN_SUCCESS:
+    case NEW_USER_SUCCESS:
       return {
         ...state,
         isLoading: false

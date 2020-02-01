@@ -37,7 +37,7 @@ function SignUp(props) {
       <form
         onSubmit={handleSubmit}
         disabled={props.loading}
-        className={props.loading ? "transparent" : "regular"}
+        className={props.isLoading ? "loading" : "regular"}
       >
         {err && <div className="err">{err}</div>}
 
@@ -90,7 +90,7 @@ function SignUp(props) {
 
 function mapStateToProps(state) {
   return {
-    loading: state.loading
+    isLoading: state.userReducer.isLoading
   };
 }
 
