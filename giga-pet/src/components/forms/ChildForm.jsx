@@ -1,6 +1,10 @@
 import React from "react";
 
 function ChildForm() {
+  // create onChange for form below
+
+  // create onSubmit for form below
+
   return (
     <div>
       <input name="child-name" placeholder="Child Name" type="text" />
