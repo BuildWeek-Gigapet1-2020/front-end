@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Food() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div>hello</div>;
 }
 
-export default Food
+export default Food;
