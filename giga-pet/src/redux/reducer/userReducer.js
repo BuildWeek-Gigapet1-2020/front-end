@@ -1,6 +1,7 @@
 import { LOADING, LOGIN_SUCCESS, NEW_USER_SUCCESS } from "../actions/types";
 const initialState = {
-  isLoading: false
+  isLoading: false,
+  name: ""
 };
 
 export const userReducer = (state = initialState, action) => {

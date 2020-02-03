@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Parent from "../Users/Parent";
 // import Child from "../Users/Child";
 
@@ -16,7 +16,7 @@ function ParentProfile() {
       {/* <Route exact path="/child/:id"></Route>
             <Link to="/child/:id" ></Link> */}
 
-      {/* <Link to="add-child">Add Child</Link> */}
+      <Link to="add-child">Add Child</Link>
     </div>
   );
 }
