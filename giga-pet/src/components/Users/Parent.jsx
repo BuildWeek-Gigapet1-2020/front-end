@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
 
 
 function Parent(props) {
     const [name, setName] = useState("")
     return (
-        <div>
+        <ContainerDiv>
             {/* <h1>{props.name}</h1> */}
-        </div>
+        </ContainerDiv>
     )
 }
 
 export default Parent;
+
+const ContainerDiv = styled.div`
+
+`
