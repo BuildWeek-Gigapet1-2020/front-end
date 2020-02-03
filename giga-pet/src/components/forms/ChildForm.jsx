@@ -5,20 +5,20 @@ function ChildForm() {
   const [child, setChild] = useState({
     name: "",
     monster_id: 1
-  })
+  });
 
   const handleChange = event => {
-    setChild({ ...child, [event.target.name]: event.target.value })
-  }
+    setChild({ ...child, [event.target.name]: event.target.value });
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
     api()
-        .post("/api/child", child)
-        .then( res => (console.log(res.data)) )
-        .catch(error => console.log("Error", error));
-  }
-  
+      .post("/api/child", child)
+      .then(res => console.log(res.data))
+      .catch(error => console.log("Error", error));
+  };
+
   // create onChange for form below
 
   // create onSubmit for form below
@@ -28,12 +28,26 @@ function ChildForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="name" placeholder="Child Name" type="text" value={child.name} onChange={handleChange}/>
-      <select value={child.monster_id} onChange={handleChange}>
-        <option value={`${1}`}>Orange Monster</option>
-        <option value={`${2}`}>Red Monster</option>
-        <option value={`${3}`}>Green Monster</option>
-        <option value={`${4}`}>Purple Monster</option>
+      <input
+        name="name"
+        placeholder="Child Name"
+        type="text"
+        value={child.name}
+        onChange={handleChange}
+      />
+      <select
+        name="monster_id"
+        value={child.monster_id}
+        onChange={handleChange}
+      >
+        {/* <option value={orangeMonster}>Orange Monster</option>
+        <option value={redMonster}>Red Monster</option>
+        <option value={greenMonster}>Green Monster</option>
+        <option value={purpleMonster}>Purple Monster</option> */}
+        <option value="1" label="Orange Monster" />
+        <option value="2" label="Red Monster" />
+        <option value="3" label="Green Monster" />
+        <option value="4" label="Purple Monster" />
       </select>
 
       <button type="submit">Submit</button>

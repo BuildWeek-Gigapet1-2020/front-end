@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import api from "../utils/api";
 
 function FoodForm() {
@@ -6,23 +6,22 @@ function FoodForm() {
     name: "",
     type: "",
     servings: 0
-  })
+  });
 
   const handleChange = event => {
-    setFood({ ...food, [event.target.name]: event.target.value })
-  }
+    setFood({ ...food, [event.target.name]: event.target.value });
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
     api()
-        .post("/api/foods", food)
-        .then( res => (console.log(res.data)) )
-        .catch(error => console.log("Error", error));
-  }
-
+      .post("/api/foods", food)
+      .then(res => console.log(res.data))
+      .catch(error => console.log("Error", error));
+  };
 
   // create onChange for form below
-    
+
   // create onSubmit for form below
 
   // add form validation
@@ -30,9 +29,21 @@ function FoodForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="name" placeholder="Food Name" value={food.name} onChange={handleChange}/>
+      <input
+        type="text"
+        name="name"
+        placeholder="Food Name"
+        value={food.name}
+        onChange={handleChange}
+      />
 
-      <input type="number" name="servings" placeholder="Food Servings" value={food.servings} onChange={handleChange}/>
+      <input
+        type="number"
+        name="servings"
+        placeholder="Food Servings"
+        value={food.servings}
+        onChange={handleChange}
+      />
 
       <select name="type" value={food.type} onChange={handleChange}>
         <option value="fruit">fruit</option>
