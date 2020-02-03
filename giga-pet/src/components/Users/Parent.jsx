@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-function Parent() {
+
+function Parent(props) {
+    const [name, setName] = useState("")
     return (
         <div>
-            <h1>Parent Content</h1>
+            {/* <h1>{props.name}</h1> */}
         </div>
     )
 }
