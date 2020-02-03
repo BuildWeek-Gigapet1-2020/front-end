@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { register } from "../../redux/actions/userActions";
 import { connect } from "react-redux";
 
-function SignUp(props) {
+function Signup(props) {
   // console.log('login props', props)
 
   const [err, setErr] = useState("");
@@ -96,4 +96,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { register })(SignUp);
+export default connect(mapStateToProps, { register })(Signup);
