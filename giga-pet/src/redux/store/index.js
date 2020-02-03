@@ -4,6 +4,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import { userReducer } from "../reducer/userReducer";
 
+const initialState = {};
+
 const middleware = [thunk];
 
 const rootReducer = combineReducers({
@@ -12,6 +14,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(
   rootReducer,
+  initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import Parent from "../Users/Parent";
 // import Child from "../Users/Child";
 
-function ParentProfile() {
+function ParentProfile(props) {
+  console.log("Parent Profile", props);
   return (
     <div className="wrapper">
       <Parent />

@@ -17,7 +17,6 @@ function Login(props) {
     username: "",
     password: ""
   });
-  // const [currentUser] = useState(data.username)
 
   console.log("data.username", data.username);
 
@@ -32,6 +31,7 @@ function Login(props) {
     e.preventDefault();
 
     props.login(data, props);
+    console.log("props.data", data, props);
     console.log("props.history", props.history);
   };
 
@@ -73,7 +73,8 @@ function Login(props) {
 function mapStateToProps(state) {
   console.log("login state", state);
   return {
-    isLoading: state.userReducer.isLoading
+    isLoading: state.userReducer.isLoading,
+    parent_name: state.userReducer.parent_name
   };
 }
 

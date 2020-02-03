@@ -1,7 +1,7 @@
 import { LOADING, LOGIN_SUCCESS, NEW_USER_SUCCESS } from "../actions/types";
 const initialState = {
   isLoading: false,
-  name: ""
+  parent_name: ""
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -16,7 +16,8 @@ export const userReducer = (state = initialState, action) => {
     case NEW_USER_SUCCESS:
       return {
         ...state,
-        isLoading: false
+        isLoading: true,
+        parent_name: action.payload
       };
     default:
       return state;
