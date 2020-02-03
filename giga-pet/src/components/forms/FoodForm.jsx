@@ -15,7 +15,7 @@ function FoodForm() {
   const handleSubmit = event => {
     event.preventDefault();
     api()
-        .post("/api/foods")
+        .post("/api/foods", food)
         .then( res => (console.log(res.data)) )
         .catch(error => console.log("Error", error));
   }
