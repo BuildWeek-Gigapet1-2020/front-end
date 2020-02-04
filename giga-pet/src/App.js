@@ -14,6 +14,7 @@ import Parent from "./components/Users/Parents/Parent";
 
 function App() {
   const [id, setId] = useState();
+  const [child, setChild] = useState([]);
 
   return (
     <div className="wrapper">
@@ -22,7 +23,12 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/food-list" component={FoodList} />
-        <Route exact path="/child/:id" component={ChildProfile} />
+        <Route
+          exact
+          path="/child/:id" 
+           render={(props) => <ChildProfile {...props} id={id} setChild={setChild} child={child}/>
+          }
+        />
         <Route exact path="/add-child" component={ChildForm} />
         <Route exact path="/parent-profile" component={ParentProfile} />
         <Route exact path="/food-form" component={FoodForm} />
