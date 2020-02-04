@@ -1,4 +1,5 @@
 import axios from "axios";
+import { store } from "../store/index";
 import { LOADING, LOGIN_SUCCESS, NEW_USER_SUCCESS } from "./types";
 
 export const login = (creds, props) => dispatch => {
@@ -11,15 +12,16 @@ export const login = (creds, props) => dispatch => {
       .then(res => {
         localStorage.setItem("token", res.data.token);
         console.log("login res.data", res.data);
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: res.data.parent_name
+        store.dispatch({
+          type: LOGIN_SUCCESS
         });
         props.history.push("/parent-profile");
       })
       .catch(err => console.log(err.response));
   }, 2000);
 };
+
+store.subscribe(login);
 
 export const register = (creds, props) => dispatch => {
   dispatch({ type: LOADING });

@@ -12,10 +12,13 @@ const rootReducer = combineReducers({
   userReducer
 });
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
+
+// console.log(store.getState());
+// store.subscribe();
 
 export default store;
