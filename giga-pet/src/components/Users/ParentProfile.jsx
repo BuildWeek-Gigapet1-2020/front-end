@@ -4,6 +4,7 @@ import Parent from "./Parents/Parent";
 import api from "../utils/api";
 import Monster from './Children/Monster';
 import Child from "./Children/Child";
+import ChildProfile from "./ChildProfile";
 
 function ParentProfile(props) {
   const [child, setChild] = useState([]);
@@ -16,6 +17,7 @@ function ParentProfile(props) {
   }, [])
 
   console.log("Parent Profile", props);
+
   return (
     <div className="wrapper">
       <Parent />
@@ -28,8 +30,7 @@ function ParentProfile(props) {
       {child.map((e, i) => {
         return (
           <div className="child-info">
-            <Child key={i} child={e.name} />
-            <Monster key={i} monster={e.monster_id} />
+            <Child key={i} child={e} />
           </div>
         );
       })}

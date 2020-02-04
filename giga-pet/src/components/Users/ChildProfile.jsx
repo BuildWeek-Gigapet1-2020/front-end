@@ -3,11 +3,15 @@ import React from "react";
 // import FoodForm from "../forms/FoodForm";
 import Child from "./Children/Child";
 
-function ChildProfile() {
+function ChildProfile(props) {
+
+  console.log("Child profile props", props)
+
   return (
     <div className="wrapper">
       <Child />
-
+      
+      <h1>Hello</h1>
       {/* 
         1) drop down for selecting: recent, monthly, weekly
         2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats
