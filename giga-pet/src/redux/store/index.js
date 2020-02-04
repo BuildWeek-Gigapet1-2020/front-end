@@ -3,18 +3,20 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import { userReducer } from "../reducer/userReducer";
+import { childReducer } from "../reducer/childReducer";
 
-const initialState = {};
+// const initialState = {};
 
 const middleware = [thunk];
 
 const rootReducer = combineReducers({
-  userReducer
+  userReducer,
+  childReducer
 });
 
 export const store = createStore(
   rootReducer,
-  initialState,
+  // initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 

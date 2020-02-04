@@ -73,8 +73,8 @@ function Login(props) {
 function mapStateToProps(state) {
   console.log("login state", state);
   return {
-    isLoading: state.userReducer.isLoading,
-    parent_name: state.userReducer.parent_name
+    isLoading: state.userReducer.isLoading
+    // parent_name: state.userReducer.parent_name
   };
 }
 

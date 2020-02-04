@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import api from "../utils/api";
 
+import { connect } from "react-redux";
+import { newFood } from "../../redux/actions/childActions";
+
 function FoodForm(props) {
   console.log("FoodForm props", props);
   const [food, setFood] = useState({
     name: "",
-    child_id: props.location.state.id,
+    child_id: 1,
     type: "fruit",
     servings: 0
   });
+
+  // // const [foodFormResult, setFoodFormResult] = useState({
+  // //   name: "",
+  // //   child_id: 0,
+  // //   type: "",
+  // //   servings: 0
+  // // });
+  // const id = props.location.state.id;
 
   const handleChange = event => {
     setFood({ ...food, [event.target.name]: event.target.value });
@@ -18,7 +29,13 @@ function FoodForm(props) {
     event.preventDefault();
     api()
       .post("/api/foods", food)
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log("FoodForm res.data", res.data);
+        // console.log("FoodForm food", food);
+        // setFoodFormResult(res.data);
+        // console.log("foodFormResult", foodFormResult);
+        // props.history.push(`/child/${food.child_id}`);
+      })
       .catch(error => console.log("Error", error));
   };
 
@@ -36,6 +53,7 @@ function FoodForm(props) {
         name="name"
         placeholder="Food Name"
         value={food.name}
+        id="food"
         onChange={handleChange}
       />
 
@@ -44,10 +62,11 @@ function FoodForm(props) {
         name="servings"
         placeholder="Food Servings"
         value={food.servings}
+        id="servings"
         onChange={handleChange}
       />
 
-      <select name="type" value={food.type} onChange={handleChange}>
+      <select name="type" value={food.type} onChange={handleChange} id="type">
         <option value="fruit">fruit</option>
         <option value="vegetable">vegetable</option>
         <option value="whole-grains">whole-grain</option>
@@ -62,4 +81,11 @@ function FoodForm(props) {
   );
 }
 
-export default FoodForm;
+function mapStateToProps(state) {
+  console.log("newFood state", state);
+  return {
+    ...state
+  };
+}
+
+export default connect(mapStateToProps, { newFood })(FoodForm);

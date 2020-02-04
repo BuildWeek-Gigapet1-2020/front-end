@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import api from "../utils/api";
 
-function ChildForm() {
+function ChildForm(props) {
+  console.log("ChildForm props", props);
   const [child, setChild] = useState({
     name: "",
     monster_id: 1
@@ -15,7 +16,10 @@ function ChildForm() {
     event.preventDefault();
     api()
       .post("/api/child", child)
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log(res.data);
+        props.history.push("/parent-profile");
+      })
       .catch(error => console.log("Error", error));
   };
 

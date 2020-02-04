@@ -6,12 +6,26 @@ import api from "../utils/api";
 
 function ChildProfile(props) {
   console.log("Child profile props", props);
-  console.log("child profile props ID", props.history.location.state.id);
+  console.log("child profile props ID", props.match.params.id);
   console.log("child profile props NAME", props.history.location.state.name);
-  const [child, setChild] = useState({});
+  const [child, setChild] = useState({
+    // child: {
+    //   id: 0,
+    //   name: "",
+    //   monster_id: 1,
+    //   parent_id: 1,
+    //   co_parent_id: null
+    // },
+    // child_food: [
+    //   {
+    //     id: 1,
+    //     name: "",
+    //   }
+    // ]
+  });
 
   const name = props.history.location.state.name;
-  const id = props.history.location.state.id;
+  const id = props.match.params.id;
 
   useEffect(() => {
     api()
@@ -20,7 +34,7 @@ function ChildProfile(props) {
         console.log("useEffect ChildProfile", res.data);
         setChild(res.data);
       });
-  }, [id]);
+  }, []);
 
   return (
     <div className="wrapper">
@@ -35,7 +49,7 @@ function ChildProfile(props) {
       <Link
         to={{
           pathname: "/food-form",
-          state: { id: props.history.location.state.id }
+          state: { id: id }
         }}
       >
         Add Food
