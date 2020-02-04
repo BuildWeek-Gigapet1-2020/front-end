@@ -11,7 +11,9 @@ export default function ProtectedRoute(props) {
         if (localStorage.getItem("token")) {
           return <Component {...renderProps} />;
         } else {
-          return <Redirect to="/" />;
+          return (
+            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+          );
         }
       }}
     />

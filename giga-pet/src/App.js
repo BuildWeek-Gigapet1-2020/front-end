@@ -3,6 +3,7 @@ import "./App.css";
 import Login from "./components/Authentication/Login";
 import Signup from "./components/Authentication/Signup";
 import { Route, withRouter } from "react-router-dom";
+import ProtectedRoute from "./components/utils/ProtectedRoute";
 import FoodList from "./components/FoodList/FoodList";
 import ChildProfile from "./components/Users/ChildProfile";
 import ChildForm from "./components/forms/ChildForm";
@@ -22,8 +23,8 @@ function App() {
         <Route exact path="/" component={LoginSignup} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <Route exact path="/food-list" component={FoodList} />
-        <Route
+        <ProtectedRoute exact path="/food-list" component={FoodList} />
+        <ProtectedRoute
           exact
           path="/child/:id"
           render={props => (
@@ -35,8 +36,8 @@ function App() {
             />
           )}
         />
-        <Route exact path="/add-child" component={ChildForm} />
-        <Route
+        <ProtectedRoute exact path="/add-child" component={ChildForm} />
+        <ProtectedRoute
           exact
           path="/parent-profile"
           render={props => (
@@ -48,8 +49,8 @@ function App() {
             />
           )}
         />
-        <Route exact path="/food-form" component={FoodForm} />
-        <Route exact path="/parent" component={Parent} />
+        <ProtectedRoute exact path="/food-form" component={FoodForm} />
+        <ProtectedRoute exact path="/parent" component={Parent} />
       </div>
     </div>
   );

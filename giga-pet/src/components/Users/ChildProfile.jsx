@@ -40,7 +40,15 @@ function ChildProfile(props) {
       {console.log("food", food)}
       {console.log("child", child)}
       <h1>Hello {child.name}</h1>
-      <h2></h2>
+      <Link
+        to={{
+          pathname: "/food-form",
+          state: { id: props.match.params.id }
+        }}
+      >
+        Add Food
+      </Link>
+      {/* <h2></h2> */}
       {/* 1) drop down for selecting: recent, monthly, weekly */}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
       {/* 3) list of food with edit and delete button next to each item */}
@@ -52,14 +60,7 @@ function ChildProfile(props) {
         );
       })}
       {/* 4) add new food button */}
-      <Link
-        to={{
-          pathname: "/food-form",
-          state: { id: props.match.params.id }
-        }}
-      >
-        Add Food
-      </Link>
+
       {/* 5) display a picture of the child's monster choice */}
 
       {/* <Route exact path="/add-food"></Route>
