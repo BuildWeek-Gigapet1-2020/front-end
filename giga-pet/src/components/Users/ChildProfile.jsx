@@ -24,6 +24,7 @@ function ChildProfile(props) {
       .then(res => {
         console.log("useEffect ChildProfile", res.data);
         setFood(res.data.child_food);
+        setChild(res.data.child);
       });
   }, []);
 
@@ -36,8 +37,9 @@ function ChildProfile(props) {
     <div className="wrapper">
       {/* <Child /> */}
 
-      {console.log("child", food)}
-      {/* <h1>Hello {childArray.name}</h1> */}
+      {console.log("food", food)}
+      {console.log("child", child)}
+      <h1>Hello {child.name}</h1>
       <h2></h2>
       {/* 1) drop down for selecting: recent, monthly, weekly */}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
