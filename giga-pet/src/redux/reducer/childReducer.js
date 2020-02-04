@@ -11,6 +11,12 @@ export const childReducer = (state = initialState, action) => {
     case NEW_FOOD_POST:
       return {
         ...action.payload
+        // name: action.payload.name,
+        // child_id: action.payload.child_id,
+        // type: action.payload.type,
+        // servings: action.payload.servings
       };
+    default:
+      return state;
   }
 };

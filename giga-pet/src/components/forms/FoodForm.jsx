@@ -3,12 +3,13 @@ import api from "../utils/api";
 
 import { connect } from "react-redux";
 import { newFood } from "../../redux/actions/childActions";
+// import { NEW_FOOD_POST } from "../../redux/actions/types";
 
 function FoodForm(props) {
   console.log("FoodForm props", props);
   const [food, setFood] = useState({
     name: "",
-    child_id: 1,
+    child_id: props.location.state.id,
     type: "fruit",
     servings: 0
   });
@@ -27,16 +28,17 @@ function FoodForm(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    api()
-      .post("/api/foods", food)
-      .then(res => {
-        console.log("FoodForm res.data", res.data);
-        // console.log("FoodForm food", food);
-        // setFoodFormResult(res.data);
-        // console.log("foodFormResult", foodFormResult);
-        // props.history.push(`/child/${food.child_id}`);
-      })
-      .catch(error => console.log("Error", error));
+    props.newFood(food, props);
+    //   // api()
+    //   //   .post("/api/foods", food)
+    //   //   .then(res => {
+    //   //     console.log("FoodForm res.data", res.data);
+    //   //     // console.log("FoodForm food", food);
+    //   //     // setFoodFormResult(res.data);
+    //   //     // console.log("foodFormResult", foodFormResult);
+    //   //     // props.history.push(`/child/${food.child_id}`);
+    //   //   })
+    //   //   .catch(error => console.log("Error", error));
   };
 
   // create onChange for form below
@@ -84,8 +86,15 @@ function FoodForm(props) {
 function mapStateToProps(state) {
   console.log("newFood state", state);
   return {
-    ...state
+    name: state.childReducer.name,
+    child_id: state.childReducer.child_id,
+    type: state.childReducer.type,
+    servings: state.childReducer.servings
   };
 }
+
+// const mapDispatchToProps = dispatch => ({
+//   handleSubmitToProps: dispatch({ type: NEW_FOOD_POST })
+// });
 
 export default connect(mapStateToProps, { newFood })(FoodForm);
