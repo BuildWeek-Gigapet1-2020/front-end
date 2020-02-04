@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Login from "./components/Authentication/Login";
 import Signup from "./components/Authentication/Signup";
@@ -10,8 +10,11 @@ import ParentProfile from "./components/Users/ParentProfile";
 import FoodForm from "./components/forms/FoodForm";
 import LoginSignup from "./components/Authentication/LoginSignup";
 import Parent from "./components/Users/Parents/Parent";
+// import Child from "./components/Users/Children/Child";
 
 function App() {
+  const [id, setId] = useState();
+
   return (
     <div className="wrapper">
       <div className="App">
@@ -19,7 +22,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/food-list" component={FoodList} />
-        <Route exact path="/child-profile" component={ChildProfile} />
+        <Route exact path="/child/:id" component={ChildProfile} />
         <Route exact path="/add-child" component={ChildForm} />
         <Route exact path="/parent-profile" component={ParentProfile} />
         <Route exact path="/food-form" component={FoodForm} />

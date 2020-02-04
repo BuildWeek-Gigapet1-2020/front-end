@@ -1,12 +1,12 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
-import ChildProfile from "../ChildProfile";
+import { Link } from "react-router-dom";
+// import ChildProfile from "../ChildProfile";
 
 function Child(props) {
-
+  console.log("child component props", props);
   return (
     <div>
-      <Route exact path={`/api/child/${props.child.id}`} component={ChildProfile} />
+      {/* <Route exact path={`/api/child/${props.child.id}`} component={ChildProfile} /> */}
 
       <Link className="child-card" to={`/api/child/${props.child.id}`}>
         <h1>{props.child.name}</h1>
