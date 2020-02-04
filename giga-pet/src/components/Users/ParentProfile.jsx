@@ -7,16 +7,27 @@ import Child from "./Children/Child";
 // import ChildProfile from "./ChildProfile";
 
 function ParentProfile(props) {
-  const [child, setChild] = useState([]);
+  console.log("Parent Profile", props);
+
+  const [child, setChild] = useState([
+    {
+      id: 0,
+      name: "",
+      monster_id: 0,
+      parent_id: 0,
+      co_parent_id: null
+    }
+  ]);
 
   useEffect(() => {
     api()
       .get("/api/child")
-      .then(res => setChild(res.data))
+      .then(res => {
+        setChild(res.data);
+      })
       .catch(err => console.log("Error: ", err));
   }, []);
-
-  console.log("Parent Profile", props);
+  console.log("child from ParentProfile", child);
 
   return (
     <div className="wrapper">
@@ -27,10 +38,14 @@ function ParentProfile(props) {
         2) add new child button -> takes user to child form
       */}
 
-      {child.map((e, i) => {
+      {child.map((entry, index) => {
+        // console.log("E", e);
+        // console.log("I", i);
         return (
           <div className="child-info">
-            <Child key={i} child={e} />
+            {/* {console.log("I number 2", i)} */}
+
+            <Child key={index} child={entry} index={index} />
           </div>
         );
       })}

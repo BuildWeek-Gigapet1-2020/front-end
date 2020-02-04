@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 // import FoodForm from "../forms/FoodForm";
 // import Child from "./Children/Child";
 import api from "../utils/api";
+import Food from "../FoodList/Food";
 
 function ChildProfile(props) {
   console.log("Child profile props", props);
   console.log("child profile props ID", props.match.params.id);
   console.log("child profile props NAME", props.history.location.state.name);
-  const [child, setChild] = useState({
+  const [child, setChild] = useState([
     // child: {
     //   id: 0,
     //   name: "",
@@ -22,7 +23,7 @@ function ChildProfile(props) {
     //     name: "",
     //   }
     // ]
-  });
+  ]);
 
   const name = props.history.location.state.name;
   const id = props.match.params.id;
@@ -32,19 +33,27 @@ function ChildProfile(props) {
       .get(`/api/child/${id}`)
       .then(res => {
         console.log("useEffect ChildProfile", res.data);
-        setChild(res.data);
+        setChild(res.data.child_food);
       });
   }, []);
 
+  // const childFood = child.child_food;
   return (
     <div className="wrapper">
       {/* <Child /> */}
 
       <h1>Hello {name}</h1>
-      <h2>{child.id}</h2>
+      <h2></h2>
       {/* 1) drop down for selecting: recent, monthly, weekly */}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
       {/* 3) list of food with edit and delete button next to each item */}
+      {child.map((e, i) => {
+        return (
+          <div>
+            <Food key={i} food={e} index={i} />
+          </div>
+        );
+      })}
       {/* 4) add new food button */}
       <Link
         to={{

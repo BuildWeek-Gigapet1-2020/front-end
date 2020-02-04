@@ -36,7 +36,18 @@ function App() {
           )}
         />
         <Route exact path="/add-child" component={ChildForm} />
-        <Route exact path="/parent-profile" component={ParentProfile} />
+        <Route
+          exact
+          path="/parent-profile"
+          render={props => (
+            <ParentProfile
+              {...props}
+              id={id}
+              setChild={setChild}
+              child={child}
+            />
+          )}
+        />
         <Route exact path="/food-form" component={FoodForm} />
         <Route exact path="/parent" component={Parent} />
       </div>
