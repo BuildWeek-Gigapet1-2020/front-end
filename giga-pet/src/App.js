@@ -13,7 +13,7 @@ import Parent from "./components/Users/Parents/Parent";
 // import Child from "./components/Users/Children/Child";
 
 function App() {
-  const [id, setId] = useState();
+  const [id] = useState();
   const [child, setChild] = useState([]);
 
   return (
@@ -25,9 +25,15 @@ function App() {
         <Route exact path="/food-list" component={FoodList} />
         <Route
           exact
-          path="/child/:id" 
-           render={(props) => <ChildProfile {...props} id={id} setChild={setChild} child={child}/>
-          }
+          path="/child/:id"
+          render={props => (
+            <ChildProfile
+              {...props}
+              id={id}
+              setChild={setChild}
+              child={child}
+            />
+          )}
         />
         <Route exact path="/add-child" component={ChildForm} />
         <Route exact path="/parent-profile" component={ParentProfile} />

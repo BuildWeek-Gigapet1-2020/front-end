@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import api from "../utils/api";
 
-function FoodForm() {
+function FoodForm(props) {
+  console.log("FoodForm props", props);
   const [food, setFood] = useState({
     name: "",
-    type: "",
+    child_id: props.location.state.id,
+    type: "fruit",
     servings: 0
   });
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import FoodForm from "../forms/FoodForm";
-import Child from "./Children/Child";
+// import Child from "./Children/Child";
 import api from "../utils/api";
 
 function ChildProfile(props) {
@@ -20,20 +20,27 @@ function ChildProfile(props) {
         console.log("useEffect ChildProfile", res.data);
         setChild(res.data);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div className="wrapper">
       {/* <Child /> */}
 
       <h1>Hello {name}</h1>
-      {/* 
-        1) drop down for selecting: recent, monthly, weekly
-        2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats
-        3) list of food with edit and delete button next to each item
-        4) add new food button
-        5) display a picture of the child's monster choice
-      */}
+      <h2>{child.id}</h2>
+      {/* 1) drop down for selecting: recent, monthly, weekly */}
+      {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
+      {/* 3) list of food with edit and delete button next to each item */}
+      {/* 4) add new food button */}
+      <Link
+        to={{
+          pathname: "/food-form",
+          state: { id: props.history.location.state.id }
+        }}
+      >
+        Add Food
+      </Link>
+      {/* 5) display a picture of the child's monster choice */}
 
       {/* <Route exact path="/add-food"></Route>
       <Link to="/add-food" component={FoodForm}>

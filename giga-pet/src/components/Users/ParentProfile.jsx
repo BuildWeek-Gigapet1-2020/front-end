@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Parent from "./Parents/Parent";
 import api from "../utils/api";
-import Monster from './Children/Monster';
+// import Monster from './Children/Monster';
 import Child from "./Children/Child";
-import ChildProfile from "./ChildProfile";
+// import ChildProfile from "./ChildProfile";
 
 function ParentProfile(props) {
   const [child, setChild] = useState([]);
 
   useEffect(() => {
     api()
-      .get('/api/child')
+      .get("/api/child")
       .then(res => setChild(res.data))
-      .catch(err => console.log('Error: ', err))
-  }, [])
+      .catch(err => console.log("Error: ", err));
+  }, []);
 
   console.log("Parent Profile", props);
 
