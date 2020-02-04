@@ -14,6 +14,7 @@ function FoodForm(props) {
     servings: 0
   });
 
+  const id = props.location.state.id;
   // // const [foodFormResult, setFoodFormResult] = useState({
   // //   name: "",
   // //   child_id: 0,
@@ -29,6 +30,7 @@ function FoodForm(props) {
   const handleSubmit = event => {
     event.preventDefault();
     props.newFood(food, props);
+    // props.history.push(`/api/child/${props.formData.child_id}`);
     //   // api()
     //   //   .post("/api/foods", food)
     //   //   .then(res => {
@@ -41,6 +43,7 @@ function FoodForm(props) {
     //   //   .catch(error => console.log("Error", error));
   };
 
+  // props.history.push(`/api/child/${id}`);
   // create onChange for form below
 
   // create onSubmit for form below
@@ -85,12 +88,16 @@ function FoodForm(props) {
 
 function mapStateToProps(state) {
   console.log("newFood state", state);
-  return {
-    name: state.childReducer.name,
-    child_id: state.childReducer.child_id,
-    type: state.childReducer.type,
-    servings: state.childReducer.servings
-  };
+  return console.log("{formData: state.childReducer}", {
+    formData: state.childReducer
+  });
+  // return {
+  //   console.log('mapstatetoprops test'),
+  //   // name: state.childReducer.name,
+  //   // childId: state.childReducer.child_id,
+  //   // type: state.childReducer.type,
+  //   // servings: state.childReducer.servings
+  // };
 }
 
 // const mapDispatchToProps = dispatch => ({

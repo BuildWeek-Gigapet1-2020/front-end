@@ -7,47 +7,42 @@ import Food from "../FoodList/Food";
 
 function ChildProfile(props) {
   console.log("Child profile props", props);
-  console.log("child profile props ID", props.match.params.id);
-  console.log("child profile props NAME", props.history.location.state.name);
-  const [child, setChild] = useState([
-    // child: {
-    //   id: 0,
-    //   name: "",
-    //   monster_id: 1,
-    //   parent_id: 1,
-    //   co_parent_id: null
-    // },
-    // child_food: [
-    //   {
-    //     id: 1,
-    //     name: "",
-    //   }
-    // ]
+  // console.log("child profile props ID", props.match.params.id);
+  // console.log("child profile props NAME", props.history.location.state.name);
+  const [food, setFood] = useState([
+    // { child: { id: 0, name: "", monster_id: 0, parent_id: 0 } }
   ]);
 
-  const name = props.history.location.state.name;
-  const id = props.match.params.id;
+  const [child, setChild] = useState([]);
+
+  // const name = props.history.location.state.name;
+  // const id = props.match.params.id;
 
   useEffect(() => {
     api()
-      .get(`/api/child/${id}`)
+      .get(`/api/child/${props.match.params.id}`)
       .then(res => {
         console.log("useEffect ChildProfile", res.data);
-        setChild(res.data.child_food);
+        setFood(res.data.child_food);
       });
   }, []);
 
+  // const childArray = child.pop();
+  // console.log("childArray", childArray);
+  // const childArrayPlusName = childArray.child_id;
+  // console.log("childArrayPlusId", childArrayPlusId);
   // const childFood = child.child_food;
   return (
     <div className="wrapper">
       {/* <Child /> */}
 
-      <h1>Hello {name}</h1>
+      {console.log("child", food)}
+      {/* <h1>Hello {childArray.name}</h1> */}
       <h2></h2>
       {/* 1) drop down for selecting: recent, monthly, weekly */}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
       {/* 3) list of food with edit and delete button next to each item */}
-      {child.map((e, i) => {
+      {food.map((e, i) => {
         return (
           <div>
             <Food key={i} food={e} index={i} />
@@ -58,7 +53,7 @@ function ChildProfile(props) {
       <Link
         to={{
           pathname: "/food-form",
-          state: { id: id }
+          state: { id: props.match.params.id }
         }}
       >
         Add Food
