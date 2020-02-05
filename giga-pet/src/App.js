@@ -23,7 +23,11 @@ function App() {
         <Route exact path="/" component={LoginSignup} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <ProtectedRoute exact path="/food-list" component={FoodList} />
+        <ProtectedRoute
+          exact
+          path="/food-list"
+          render={props => <FoodList {...props} />}
+        />
         <ProtectedRoute
           exact
           path="/child/:id"
@@ -36,7 +40,11 @@ function App() {
             />
           )}
         />
-        <ProtectedRoute exact path="/add-child" component={ChildForm} />
+        <ProtectedRoute
+          exact
+          path="/add-child"
+          render={props => <ChildForm {...props} />}
+        />
         <ProtectedRoute
           exact
           path="/parent-profile"
@@ -49,8 +57,12 @@ function App() {
             />
           )}
         />
-        <ProtectedRoute exact path="/food-form" component={FoodForm} />
-        <ProtectedRoute exact path="/parent" component={Parent} />
+        <ProtectedRoute
+          exact
+          path="/food-form"
+          render={props => <FoodForm {...props} />}
+        />
+        {/* <ProtectedRoute exact path="/parent" component={Parent} /> */}
       </div>
     </div>
   );
