@@ -44,22 +44,31 @@ function ChildProfile(props) {
     setDate({ ...date, [event.target.name]: event.target.value });
   };
 
+  /* 
+    1. loop over the last week of dates and push to new array *
+    2. loop over child's food
+    3. using the food's created_at, loop over the new array of dates and see if it includes any of those dates
+    4. Add those to a new array and set that to state
+    ||||||||||
+    possibly implement a switch case for rendering food to DOM
+    if selection is weekly, if case is true, run code - if daily, etc...
+
+    maybe eliminate weekly function and replacing with switch case
+  */
+
+ let newArray = [];
+
   const weekly = () => {
-    let newArray = []
     if (date.current_selection === "weekly") {
-  for (let index = 0; index <= 6; index++) {
-   newArray.push(moment().subtract(index, 'days').calendar());
-   return newArray;
+      for (let index = 0; index <= 6; index++) {
+        newArray.push(moment().subtract(index, 'days').format());
+        // return newArray;
+        
+      }
+    }
   }
-  console.log("weekly function newArray", newArray);
-  }
-  
-}
-
-console.log(moment().subtract(4, 'days').calendar());
 
 
-  
 
   return (
     <div className="wrapper">
@@ -78,7 +87,7 @@ console.log(moment().subtract(4, 'days').calendar());
       </Link>
       {/* <h2></h2> */}
       {/* 1) drop down for selecting: recent, monthly, weekly */}
-      
+
       {/* 
           1. Create dropdown with options.
           2. Create handleChange, set value of dropdown to state.
@@ -86,19 +95,19 @@ console.log(moment().subtract(4, 'days').calendar());
             Moment.js, 
       */}
 
-        <select 
-          name="current_selection" 
-          value={date.current_selection} 
-          onChange={handleChange}
-          >
-          <option value="daily" label="Daily" />
-          <option value="weekly" label="Weekly" />
-          <option value="monthly" label="Monthly" />
-        </select>
+      <select
+        name="current_selection"
+        value={date.current_selection}
+        onChange={handleChange}
+      >
+        <option value="daily" label="Daily" />
+        <option value="weekly" label="Weekly" />
+        <option value="monthly" label="Monthly" />
+      </select>
 
-        {weekly()}
+      {weekly()}
 
-        {console.log(date)}
+      {console.log(date)}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
       {/* 3) list of food with edit and delete button next to each item */}
       {food.map((e, i) => {
