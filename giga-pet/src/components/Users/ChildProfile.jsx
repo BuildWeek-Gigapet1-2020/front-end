@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // import Child from "./Children/Child";
 import api from "../utils/api";
 import Food from "../FoodList/Food";
+import moment from "moment";
 
 function ChildProfile(props) {
   console.log("Child profile props", props);
@@ -31,6 +32,8 @@ function ChildProfile(props) {
       });
   }, []);
 
+
+
   // const childArray = child.pop();
   // console.log("childArray", childArray);
   // const childArrayPlusName = childArray.child_id;
@@ -40,6 +43,23 @@ function ChildProfile(props) {
   const handleChange = event => {
     setDate({ ...date, [event.target.name]: event.target.value });
   };
+
+  const weekly = () => {
+    let newArray = []
+    if (date.current_selection === "weekly") {
+  for (let index = 0; index <= 6; index++) {
+   newArray.push(moment().subtract(index, 'days').calendar());
+   return newArray;
+  }
+  console.log("weekly function newArray", newArray);
+  }
+  
+}
+
+console.log(moment().subtract(4, 'days').calendar());
+
+
+  
 
   return (
     <div className="wrapper">
@@ -75,6 +95,8 @@ function ChildProfile(props) {
           <option value="weekly" label="Weekly" />
           <option value="monthly" label="Monthly" />
         </select>
+
+        {weekly()}
 
         {console.log(date)}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
