@@ -10,7 +10,8 @@ import ChildForm from "./components/forms/ChildForm";
 import ParentProfile from "./components/Users/ParentProfile";
 import FoodForm from "./components/forms/FoodForm";
 import LoginSignup from "./components/Authentication/LoginSignup";
-import Parent from "./components/Users/Parents/Parent";
+// import Parent from "./components/Users/Parents/Parent";
+import EditFood from "./components/FoodList/EditFood";
 // import Child from "./components/Users/Children/Child";
 
 function App() {
@@ -61,6 +62,11 @@ function App() {
           exact
           path="/food-form"
           render={props => <FoodForm {...props} />}
+        />
+        <ProtectedRoute
+          exact
+          path="/edit-food"
+          render={props => <EditFood {...props} />}
         />
         {/* <ProtectedRoute exact path="/parent" component={Parent} /> */}
       </div>

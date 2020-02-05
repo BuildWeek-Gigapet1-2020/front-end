@@ -8,7 +8,7 @@ function Food(props) {
   return (
     <ContainerDiv>
       <div className="edit-delete">
-        <Link to={{ pathname: `/` }}>
+        <Link to={{ pathname: `/edit-food/${props.id}` }}>
           <button className="btn-left">
             <p>Edit</p>
           </button>
