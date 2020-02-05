@@ -1,12 +1,27 @@
 import React, { useState } from "react";
 import api from "../utils/api";
 
-function FoodForm() {
+import { connect } from "react-redux";
+import { newFood } from "../../redux/actions/childActions";
+// import { NEW_FOOD_POST } from "../../redux/actions/types";
+
+function FoodForm(props) {
+  console.log("FoodForm props", props);
   const [food, setFood] = useState({
     name: "",
-    type: "",
+    child_id: props.location.state.id,
+    type: "fruit",
     servings: 0
   });
+
+  const id = props.location.state.id;
+  // // const [foodFormResult, setFoodFormResult] = useState({
+  // //   name: "",
+  // //   child_id: 0,
+  // //   type: "",
+  // //   servings: 0
+  // // });
+  // const id = props.location.state.id;
 
   const handleChange = event => {
     setFood({ ...food, [event.target.name]: event.target.value });
@@ -14,12 +29,21 @@ function FoodForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    api()
-      .post("/api/foods", food)
-      .then(res => console.log(res.data))
-      .catch(error => console.log("Error", error));
+    props.newFood(food, props);
+    // props.history.push(`/api/child/${props.formData.child_id}`);
+    //   // api()
+    //   //   .post("/api/foods", food)
+    //   //   .then(res => {
+    //   //     console.log("FoodForm res.data", res.data);
+    //   //     // console.log("FoodForm food", food);
+    //   //     // setFoodFormResult(res.data);
+    //   //     // console.log("foodFormResult", foodFormResult);
+    //   //     // props.history.push(`/child/${food.child_id}`);
+    //   //   })
+    //   //   .catch(error => console.log("Error", error));
   };
 
+  // props.history.push(`/api/child/${id}`);
   // create onChange for form below
 
   // create onSubmit for form below
@@ -34,6 +58,7 @@ function FoodForm() {
         name="name"
         placeholder="Food Name"
         value={food.name}
+        id="food"
         onChange={handleChange}
       />
 
@@ -42,10 +67,11 @@ function FoodForm() {
         name="servings"
         placeholder="Food Servings"
         value={food.servings}
+        id="servings"
         onChange={handleChange}
       />
 
-      <select name="type" value={food.type} onChange={handleChange}>
+      <select name="type" value={food.type} onChange={handleChange} id="type">
         <option value="fruit">fruit</option>
         <option value="vegetable">vegetable</option>
         <option value="whole-grains">whole-grain</option>
@@ -60,4 +86,22 @@ function FoodForm() {
   );
 }
 
-export default FoodForm;
+function mapStateToProps(state) {
+  console.log("newFood state", state);
+  return console.log("{formData: state.childReducer}", {
+    formData: state.childReducer
+  });
+  // return {
+  //   console.log('mapstatetoprops test'),
+  //   // name: state.childReducer.name,
+  //   // childId: state.childReducer.child_id,
+  //   // type: state.childReducer.type,
+  //   // servings: state.childReducer.servings
+  // };
+}
+
+// const mapDispatchToProps = dispatch => ({
+//   handleSubmitToProps: dispatch({ type: NEW_FOOD_POST })
+// });
+
+export default connect(mapStateToProps, { newFood })(FoodForm);
