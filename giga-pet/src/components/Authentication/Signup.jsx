@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 function Signup(props) {
   // console.log('login props', props)
 
-  const [err, setErr] = useState("");
+  // const [err, setErr] = useState("");
 
   const [data, setData] = useState({
     username: "",
@@ -41,7 +41,7 @@ function Signup(props) {
         // this is handled with redux state management
         className={props.isLoading ? "loading" : "regular"}
       >
-        {err && <div className="err">{err}</div>}
+        {/* {err && <div className="err">{err}</div>} */}
 
         <input
           type="text"
