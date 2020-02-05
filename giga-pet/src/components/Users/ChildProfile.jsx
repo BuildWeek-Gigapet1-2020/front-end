@@ -15,6 +15,9 @@ function ChildProfile(props) {
 
   const [child, setChild] = useState([]);
 
+  const [date, setDate] = useState({
+    current_selection: ""
+  });
   // const name = props.history.location.state.name;
   // const id = props.match.params.id;
 
@@ -33,6 +36,11 @@ function ChildProfile(props) {
   // const childArrayPlusName = childArray.child_id;
   // console.log("childArrayPlusId", childArrayPlusId);
   // const childFood = child.child_food;
+
+  const handleChange = event => {
+    setDate({ ...date, [event.target.name]: event.target.value });
+  };
+
   return (
     <div className="wrapper">
       {/* <Child /> */}
@@ -50,6 +58,25 @@ function ChildProfile(props) {
       </Link>
       {/* <h2></h2> */}
       {/* 1) drop down for selecting: recent, monthly, weekly */}
+      
+      {/* 
+          1. Create dropdown with options.
+          2. Create handleChange, set value of dropdown to state.
+          3. Type Daily/Weekly/Monthly.
+            Moment.js, 
+      */}
+
+        <select 
+          name="current_selection" 
+          value={date.current_selection} 
+          onChange={handleChange}
+          >
+          <option value="daily" label="Daily" />
+          <option value="weekly" label="Weekly" />
+          <option value="monthly" label="Monthly" />
+        </select>
+
+        {console.log(date)}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
       {/* 3) list of food with edit and delete button next to each item */}
       {food.map((e, i) => {

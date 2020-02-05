@@ -9,13 +9,9 @@ import ChildProfile from "./components/Users/ChildProfile";
 import ChildForm from "./components/forms/ChildForm";
 import ParentProfile from "./components/Users/ParentProfile";
 import FoodForm from "./components/forms/FoodForm";
-<<<<<<< HEAD
-// import styled, { css } from 'styled-components';
-=======
 import LoginSignup from "./components/Authentication/LoginSignup";
 import Parent from "./components/Users/Parents/Parent";
 // import Child from "./components/Users/Children/Child";
->>>>>>> bab95936ae4b68a386398499d98041faec663254
 
 function App() {
   const [id] = useState();
