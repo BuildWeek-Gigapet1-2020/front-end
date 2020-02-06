@@ -14,13 +14,18 @@ function ChildForm(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    api()
-      .post("/api/child", child)
-      .then(res => {
-        console.log(res.data);
-        props.history.push("/parent-profile");
-      })
-      .catch(error => console.log("Error", error));
+
+    if (child.name.length <= 1) {
+      alert("Name is too short");
+    } else {
+      api()
+        .post("/api/child", child)
+        .then(res => {
+          console.log(res.data);
+          props.history.push("/parent-profile");
+        })
+        .catch(error => console.log("Error", error));
+    }
   };
 
   // create onChange for form below
