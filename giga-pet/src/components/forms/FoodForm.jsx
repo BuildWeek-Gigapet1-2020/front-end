@@ -89,7 +89,7 @@ function FoodForm(props) {
 function mapStateToProps(state) {
   console.log("newFood state", state);
   return console.log("{formData: state.childReducer}", {
-    formData: state.childReducer
+    formData: state.foodReducer
   });
   // return {
   //   console.log('mapstatetoprops test'),
