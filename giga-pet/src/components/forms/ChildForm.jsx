@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import api from "../utils/api";
 
+import { connect } from "react-redux";
+
 function ChildForm(props) {
   console.log("ChildForm props", props);
   const [child, setChild] = useState({
@@ -64,4 +66,11 @@ function ChildForm(props) {
   );
 }
 
-export default ChildForm;
+function mapStateToProps(state) {
+  console.log("newChild state", state);
+  return console.log("{formData: state.childReducer}", {
+    formData: state.childReducer
+  });
+}
+
+export default connect(mapStateToProps, { newChild })(ChildForm);
