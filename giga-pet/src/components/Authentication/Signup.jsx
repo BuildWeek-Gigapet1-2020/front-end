@@ -27,67 +27,68 @@ function Signup(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-
     props.register(data, props);
     console.log("props.history", props.history);
-  };
+  }
 
-  return (
-    <div className="signup-form">
-      <form
-        onSubmit={handleSubmit}
+
+return (
+  <div className="signup-form">
+    <form
+      onSubmit={handleSubmit}
+      disabled={props.loading}
+      // class name below changes based on loading state
+      // this is handled with redux state management
+      className={props.isLoading ? "loading" : "regular"}
+    >
+      {/* {err && <div className="err">{err}</div>} */}
+
+      <input
+        type="text"
+        name="username"
+        placeholder="username"
+        value={data.username}
+        className="signup-field"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="parent_name"
+        placeholder="Name"
+        value={data.name}
+        className="signup-field"
+        onChange={handleChange}
+      />
+
+      <input
+        type="text"
+        name="email"
+        placeholder="Email"
+        value={data.email}
+        className="signup-field"
+        onChange={handleChange}
+      />
+
+      <input
+        type="text"
+        name="password"
+        placeholder="password"
+        value={data.password}
+        className="signup-field"
+        onChange={handleChange}
+        minLength="8"
+      />
+
+      <button
+        className="signup-button"
         disabled={props.loading}
-        // class name below changes based on loading state
-        // this is handled with redux state management
-        className={props.isLoading ? "loading" : "regular"}
+        type="submit"
       >
-        {/* {err && <div className="err">{err}</div>} */}
-
-        <input
-          type="text"
-          name="username"
-          placeholder="username"
-          value={data.username}
-          className="signup-field"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="parent_name"
-          placeholder="Name"
-          value={data.name}
-          className="signup-field"
-          onChange={handleChange}
-        />
-
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          value={data.email}
-          className="signup-field"
-          onChange={handleChange}
-        />
-
-        <input
-          type="text"
-          name="password"
-          placeholder="password"
-          value={data.password}
-          className="signup-field"
-          onChange={handleChange}
-        />
-
-        <button
-          className="signup-button"
-          disabled={props.loading}
-          type="submit"
-        >
-          Sign Up
+        Sign Up
         </button>
-      </form>
-    </div>
-  );
+    </form>
+  </div>
+);
 }
 
 function mapStateToProps(state) {
