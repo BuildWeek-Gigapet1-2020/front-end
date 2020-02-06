@@ -55,7 +55,7 @@ function Login(props) {
         </div>
         <div className="login-field">
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="password"
             value={data.password}
