@@ -7,8 +7,8 @@ import Child from "./Children/Child";
 // import ChildProfile from "./ChildProfile";
 
 function ParentProfile(props) {
-  console.log("Parent Profile", props);
-
+  console.log("Parent Profile props", props);
+  console.log("test console log TEST TEST TEST");
   const [child, setChild] = useState([
     {
       id: 0,

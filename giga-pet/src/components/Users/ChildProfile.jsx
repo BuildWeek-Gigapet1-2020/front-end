@@ -30,9 +30,7 @@ function ChildProfile(props) {
         setFood(res.data.child_food);
         setChild(res.data.child);
       });
-  }, []);
-
-
+  }, [props.match.params.id]);
 
   // const childArray = child.pop();
   // console.log("childArray", childArray);
@@ -56,57 +54,71 @@ function ChildProfile(props) {
     maybe eliminate weekly function and replacing with switch case
   */
 
-
-
-  console.log("Moment date: ", moment().utc().format("YYYY-MM-DD"));
+  console.log(
+    "Moment date: ",
+    moment()
+      .utc()
+      .format("YYYY-MM-DD")
+  );
 
   let newDailyArray = [];
   let newWeeklyArray = [];
   let newMonthlyArray = [];
   let foodDateArray = [];
 
-  food.forEach((el) => {
+  food.forEach(el => {
     foodDateArray.push(el.created_at.slice(0, 10));
-  })
+  });
 
   const weekly = () => {
     if (date.current_selection === "weekly") {
       //Start weekly check code
       for (let index = 0; index <= 6; index++) {
-        newWeeklyArray.push(moment().subtract(index, 'days').utc().format("YYYY-MM-DD"));
+        newWeeklyArray.push(
+          moment()
+            .subtract(index, "days")
+            .utc()
+            .format("YYYY-MM-DD")
+        );
       }
       console.log("Dates: ", newWeeklyArray);
 
       let filteredWeeklyArray = [];
 
-      foodDateArray.filter((e) => {
+      foodDateArray.filter(e => {
         filteredWeeklyArray.push(newWeeklyArray.includes(e));
-      })
+        return newWeeklyArray;
+      });
 
       console.log("Filtered: ", filteredWeeklyArray);
       //end weekly check code
     } else if (date.current_selection === "daily") {
       newDailyArray.push(moment().format("YYYY-MM-DD"));
       console.log("Dates: ", newDailyArray);
-
     } else if (date.current_selection === "monthly") {
       for (let index = 0; index <= 29; index++) {
-        newMonthlyArray.push(moment().subtract(index, 'days').format("YYYY-MM-DD"));
+        newMonthlyArray.push(
+          moment()
+            .subtract(index, "days")
+            .format("YYYY-MM-DD")
+        );
       }
       console.log("Dates: ", newMonthlyArray);
     }
-  }
+  };
 
   return (
     <div className="wrapper">
       {/* <Child /> */}
-
       {console.log("food", food)}
       {console.log("child", child)}
       <h1>Hello, {child.name}!</h1>
-
-      <img src="https://cdn3.iconfinder.com/data/icons/monsters-3/66/69-512.png" alt="trash" width="150px" /> <br /> <br />
-
+      <img
+        src="https://cdn3.iconfinder.com/data/icons/monsters-3/66/69-512.png"
+        alt="trash"
+        width="150px"
+      />{" "}
+      <br /> <br />
       <Link
         to={{
           pathname: "/food-form",
@@ -118,14 +130,12 @@ function ChildProfile(props) {
       </Link>
       {/* <h2></h2> */}
       {/* 1) drop down for selecting: recent, monthly, weekly */}
-
       {/* 
           1. Create dropdown with options.
           2. Create handleChange, set value of dropdown to state.
           3. Type Daily/Weekly/Monthly.
             Moment.js, 
       */}
-
       <select
         name="current_selection"
         value={date.current_selection}
@@ -135,9 +145,7 @@ function ChildProfile(props) {
         <option value="weekly" label="Weekly" />
         <option value="monthly" label="Monthly" />
       </select>
-
       <br />
-
       <input type="checkbox" label="Fruit" /> Fruit
       <input type="checkbox" label="Vegetable" /> Vegetable
       <input type="checkbox" label="Whole Grains" /> Whole Grains
@@ -145,9 +153,7 @@ function ChildProfile(props) {
       <input type="checkbox" label="Dairy" /> Dairy
       <input type="checkbox" label="Fats/Oils" /> Fats/Oils
       <input type="checkbox" label="Treats" /> Treats
-
       {weekly()}
-
       {console.log(date)}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
       {/* 3) list of food with edit and delete button next to each item */}
@@ -159,9 +165,7 @@ function ChildProfile(props) {
         );
       })}
       {/* 4) add new food button */}
-
       {/* 5) display a picture of the child's monster choice */}
-
       {/* <Route exact path="/add-food"></Route>
       <Link to="/add-food" component={FoodForm}>
         Submit

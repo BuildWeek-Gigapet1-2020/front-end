@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import api from "../utils/api";
+// import api from "../utils/api";
 
 import { connect } from "react-redux";
-import { newFood } from "../../redux/actions/childActions";
+import { newFood } from "../../redux/actions/foodActions";
 // import { NEW_FOOD_POST } from "../../redux/actions/types";
 
 function FoodForm(props) {
@@ -14,7 +14,7 @@ function FoodForm(props) {
     servings: 0
   });
 
-  const id = props.location.state.id;
+  // const id = props.location.state.id;
   // // const [foodFormResult, setFoodFormResult] = useState({
   // //   name: "",
   // //   child_id: 0,

@@ -1,12 +1,14 @@
-import { NEW_CHILD_POST } from "../actions/types";
+import { NEW_FOOD_POST } from "../actions/types";
 const initialState = {
   name: "test",
-  monster_id: 0
+  child_id: 0,
+  type: "test",
+  servings: 0
 };
 
-export const childReducer = (state = initialState, action) => {
+export const foodReducer = (state = initialState, action) => {
   switch (action.type) {
-    case NEW_CHILD_POST:
+    case NEW_FOOD_POST:
       return {
         ...action.payload
         // name: action.payload.name,
