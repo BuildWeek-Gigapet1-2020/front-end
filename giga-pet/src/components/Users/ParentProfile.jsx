@@ -13,7 +13,7 @@ function ParentProfile(props) {
 
   useEffect(() => {
     dispatch(loadChild());
-  }, []);
+  }, [dispatch]);
 
   console.log("child from ParentProfile", child);
 

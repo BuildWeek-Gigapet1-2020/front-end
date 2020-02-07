@@ -66,7 +66,12 @@ function App() {
         <ProtectedRoute
           exact
           path="/edit-food/:id"
-          render={props => <EditFood {...props} id={id}/>}
+          render={props => <EditFood {...props} id={id} />}
+        />
+        <ProtectedRoute
+          exact
+          path="/food-list"
+          render={props => <FoodList {...props} id={id} />}
         />
         {/* <ProtectedRoute exact path="/parent" component={Parent} /> */}
       </div>

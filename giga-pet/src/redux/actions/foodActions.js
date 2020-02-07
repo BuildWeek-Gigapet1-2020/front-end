@@ -1,6 +1,6 @@
 import api from "../../components/utils/api";
 // import { store } from "../store/index";
-import { NEW_FOOD_POST } from "./types";
+import { NEW_FOOD_POST, LOAD_FOOD } from "./types";
 
 export const newFood = (food, props) => dispatch => {
   // dispatch({type: NEW_CHILD_POST})
@@ -28,7 +28,7 @@ export const loadFood = props => dispatch => {
     .then(res => {
       console.log("loadFood from foodActions on ChildProfile", res.data);
       dispatch({
-        type: NEW_FOOD_POST,
+        type: LOAD_FOOD,
         payload: res.data
       });
     });

@@ -1,23 +1,20 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+// import { connect } from "react-redux";
 import Food from "./Food";
+import { loadFood } from "../../redux/actions/foodActions";
 
 function FoodList(props) {
-  return (
-    <>
-      <Food />
+  console.log(props);
+  const child = useSelector(state => state.childReducer);
+  const dispatch = useDispatch();
 
-      {/* {props.foodArray.map(entry => {
-        return <Food />;
-      })} */}
-    </>
-  );
+  useEffect(() => {
+    dispatch(loadFood(props));
+  }, [dispatch]);
+
+  return <>{console.log(child)}</>;
 }
 
-function mapStateToProps(state) {
-  console.log("foodList State2", state);
-  return {
-    foodArray: state.foodReducer.foodArray
-  };
-}
-export default connect(mapStateToProps)(FoodList);
+export default FoodList;

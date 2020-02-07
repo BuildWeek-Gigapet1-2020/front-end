@@ -1,9 +1,7 @@
 import { NEW_FOOD_POST, LOAD_FOOD } from "../actions/types";
 const initialState = {
-  // name: "test",
-  // child_id: 0,
-  // type: "test",
-  // servings: 0
+  child: {},
+  child_food: [{}]
 };
 
 export const foodReducer = (state = initialState, action) => {
@@ -18,7 +16,9 @@ export const foodReducer = (state = initialState, action) => {
       };
     case LOAD_FOOD:
       return {
-        ...action.payload
+        ...state,
+        child: action.payload.child,
+        child_food: action.payload.child_food
       };
     default:
       return state;
