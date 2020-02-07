@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import FoodForm from "../forms/FoodForm";
 // import Child from "./Children/Child";
-import api from "../utils/api";
 import Food from "../FoodList/Food";
-import moment from "moment";
+// import moment from "moment";
 
 import { useSelector, useDispatch } from "react-redux";
 import { loadFood } from "../../redux/actions/foodActions";
@@ -18,6 +17,7 @@ function ChildProfile(props) {
   const child = childList.child;
   const childFood = childList.child_food;
 
+  const id = props.location.state.id;
   const name = props.location.state.name;
 
   console.log("child", child);
@@ -26,8 +26,6 @@ function ChildProfile(props) {
   useEffect(() => {
     dispatch(loadFood(props));
   }, [props.match.params.id]);
-
-  // console.log("onload", onload);
 
   return (
     <div className="wrapper">
