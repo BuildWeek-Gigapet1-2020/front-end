@@ -231,24 +231,3 @@ function ChildProfile(props) {
 export default ChildProfile;
 
 const ContainerDiv = styled.div``;
-//   .checkbox-wrapper {
-//     // background-color: red;
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: center;
-//     padding: 10px 0px;
-
-//     .checkbox-styles {
-//       padding 0px 10px;
-//       padding-top: 1rem;
-//     }
-
-//   .food-button {
-//     border: 1.1px solid black;
-//     border-radius: 5px;
-//     padding: 2px;
-//   }
-//   .dropdown {
-//     margin-top: 10px;
-//   }
-// }
