@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-function Parent() {
+function Parent(props) {
   //   const [name, setName] = useState("");
   return (
     <ContainerDiv>
-      <h1>Parent_First_Name</h1>
+      <h1>Hello, {props.name}!</h1>
     </ContainerDiv>
   );
 }

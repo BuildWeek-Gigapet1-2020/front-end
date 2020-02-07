@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadChild } from "../../redux/actions/childActions";
 
 function ParentProfile(props) {
+  console.log("Parent profile props", props);
   const child = useSelector(state => state.childReducer);
   const dispatch = useDispatch();
 
@@ -19,7 +20,7 @@ function ParentProfile(props) {
 
   return (
     <div className="wrapper">
-      <Parent />
+      <Parent name={props.history.location.state.credentials.parent_name} />
 
       {child &&
         child.map((entry, index) => {

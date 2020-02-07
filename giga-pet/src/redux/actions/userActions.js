@@ -15,7 +15,10 @@ export const login = (creds, props) => dispatch => {
         store.dispatch({
           type: LOGIN_SUCCESS
         });
-        props.history.push("/parent-profile");
+        props.history.push({
+          pathname: "/parent-profile",
+          state: { credentials: res.data }
+        });
       })
       .catch(err => console.log(err.response));
   }, 2000);
