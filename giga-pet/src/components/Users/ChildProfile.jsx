@@ -26,6 +26,11 @@ function ChildProfile(props) {
   // const id = props.match.params.id;
 
   useEffect(() => {
+    fetchData();
+    console.log("ran")
+  }, []);
+
+  function fetchData() {
     api()
       .get(`/api/child/${props.match.params.id}`)
       .then(res => {
@@ -33,9 +38,7 @@ function ChildProfile(props) {
         setFood(res.data.child_food);
         setChild(res.data.child);
       });
-  }, []);
-
-  let currentFoodTypes = [];
+  }
 
   // const childArray = child.pop();
   // console.log("childArray", childArray);
@@ -43,32 +46,27 @@ function ChildProfile(props) {
   // console.log("childArrayPlusId", childArrayPlusId);
   // const childFood = child.child_food;
 
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    console.log("Food: ", food);
+    let results = [];
+    for (let i = 0; i < type.length; i++) {
+      for (let j = 0; j < food.length; j++) {
+        if (type[i] === food[j].type) {
+          results.push(food[j]);
+        }
+
+      }
+
+    }
+    setFood(results);
+    setType([]);
+  };
+
   const handleChange = event => {
     setDate({ ...date, [event.target.name]: event.target.value });
-
-
-
-
-    console.log("Includes", type.includes(event.target.value))
-    //If it includes, remove it from types
-    if (type.includes(event.target.value)) {
-      const index = type.findIndex((el) => {
-        return el === event.target.value;
-      });
-
-      setType(type.slice(index + 1, index + 2));
-      // console.log("Splice", type)
-      //make another API call to get food
-      //set response to state(food)
-    }
-    else {
-      setType([...type, event.target.value]);
-      food.filter((el, index) => {
-        if (type === el.type) {
-          setType(el);
-        }
-      })
-    }
+    setType([...type, event.target.value]);
 
   };
 
@@ -154,19 +152,19 @@ function ChildProfile(props) {
             Moment.js, 
       */}
 
-      <select
-        name="current_selection"
-        value={date.current_selection}
-        onChange={handleChange}
-        className="dropdown"
-      >
-        <option value="daily" label="Daily" />
-        <option value="weekly" label="Weekly" />
-        <option value="monthly" label="Monthly" />
-      </select>
-
       <br />
-      <div className="checkbox-wrapper">
+      <form onSubmit={handleSubmit} >
+        <select
+          name="current_selection"
+          value={date.current_selection}
+          onChange={handleChange}
+          className="dropdown"
+        >
+          <option value="daily" label="Daily" />
+          <option value="weekly" label="Weekly" />
+          <option value="monthly" label="Monthly" />
+        </select>
+
         <label className="checkbox-styles"><input type="checkbox" label="Fruit" name="fruit" value="fruit" onChange={handleChange} /> Fruit</label>
         <label className="checkbox-styles"><input type="checkbox" label="Vegetable" name="vegetable" value="vegetable" onChange={handleChange} /> Vegetable</label>
         <label className="checkbox-styles"><input type="checkbox" label="Whole Grains" name="whole-grains" value="whole-grains" onChange={handleChange} /> Whole Grains</label>
@@ -174,7 +172,8 @@ function ChildProfile(props) {
         <label className="checkbox-styles"><input type="checkbox" label="Dairy" name="dairy" value="dairy" onChange={handleChange} /> Dairy</label>
         <label className="checkbox-styles"><input type="checkbox" label="Fats/Oils" name="fats-oils" value="fats-oils" onChange={handleChange} /> Fats/Oils</label>
         <label className="checkbox-styles"><input type="checkbox" label="Treats" name="treats" value="treats" onChange={handleChange} /> Treats</label>
-      </div>
+        <button type="submit">Search</button>
+      </form>
 
       {weekly()}
 
