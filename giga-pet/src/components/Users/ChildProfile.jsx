@@ -13,6 +13,22 @@ import { loadFood } from "../../redux/actions/foodActions";
 function ChildProfile(props) {
   console.log("Child profile props", props);
 
+  const childList = useSelector(state => state.foodReducer);
+  const dispatch = useDispatch();
+
+  const child = childList.child;
+  const childFood = childList.child_food;
+
+  const id = props.location.state.id;
+  const name = props.location.state.name;
+
+  console.log("child", child);
+  console.log("childFood", childFood);
+
+  useEffect(() => {
+    dispatch(loadFood(props));
+  }, [props.match.params.id]);
+
   // const [type, setType] = useState([]);
 
   // const [date, setDate] = useState({
@@ -74,22 +90,6 @@ function ChildProfile(props) {
   // let newWeeklyArray = [];
   // let newMonthlyArray = [];
   // let foodDateArray = [];
-
-  const childList = useSelector(state => state.foodReducer);
-  const dispatch = useDispatch();
-
-  const child = childList.child;
-  const childFood = childList.child_food;
-
-  const id = props.location.state.id;
-  const name = props.location.state.name;
-
-  console.log("child", child);
-  console.log("childFood", childFood);
-
-  useEffect(() => {
-    dispatch(loadFood(props));
-  }, [props.match.params.id]);
 
   return (
     <ContainerDiv>
