@@ -1,9 +1,9 @@
 import { NEW_FOOD_POST } from "../actions/types";
 const initialState = {
-  name: "test",
-  child_id: 0,
-  type: "test",
-  servings: 0
+  // name: "test",
+  // child_id: 0,
+  // type: "test",
+  // servings: 0
 };
 
 export const foodReducer = (state = initialState, action) => {

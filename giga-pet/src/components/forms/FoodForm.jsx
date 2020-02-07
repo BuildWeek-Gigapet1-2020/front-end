@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 // import api from "../utils/api";
 
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { newFood } from "../../redux/actions/foodActions";
 // import { NEW_FOOD_POST } from "../../redux/actions/types";
 
 function FoodForm(props) {
   console.log("FoodForm props", props);
+
+  // const food = useSelector(state => state.foodReducer);
+  const dispatch = useDispatch();
+
+  // const id = props.location.state.id;
   const [food, setFood] = useState({
     name: "",
     child_id: props.location.state.id,
     type: "fruit",
     servings: 0
   });
-
-  // const id = props.location.state.id;
-  // // const [foodFormResult, setFoodFormResult] = useState({
-  // //   name: "",
-  // //   child_id: 0,
-  // //   type: "",
-  // //   servings: 0
-  // // });
   // const id = props.location.state.id;
 
   const handleChange = event => {
@@ -29,27 +26,10 @@ function FoodForm(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    props.newFood(food, props);
-    // props.history.push(`/api/child/${props.formData.child_id}`);
-    //   // api()
-    //   //   .post("/api/foods", food)
-    //   //   .then(res => {
-    //   //     console.log("FoodForm res.data", res.data);
-    //   //     // console.log("FoodForm food", food);
-    //   //     // setFoodFormResult(res.data);
-    //   //     // console.log("foodFormResult", foodFormResult);
-    //   //     // props.history.push(`/child/${food.child_id}`);
-    //   //   })
-    //   //   .catch(error => console.log("Error", error));
+    dispatch(newFood(food));
+    props.history.push(`/child/${food.child_id}`);
+    // console.log(food)
   };
-
-  // props.history.push(`/api/child/${id}`);
-  // create onChange for form below
-
-  // create onSubmit for form below
-
-  // add form validation
-  //    - for food name make sure the text typed in is a string and not a number
 
   return (
     <form onSubmit={handleSubmit}>
@@ -86,22 +66,11 @@ function FoodForm(props) {
   );
 }
 
-function mapStateToProps(state) {
-  console.log("newFood state", state);
-  return console.log("{formData: state.childReducer}", {
-    formData: state.foodReducer
-  });
-  // return {
-  //   console.log('mapstatetoprops test'),
-  //   // name: state.childReducer.name,
-  //   // childId: state.childReducer.child_id,
-  //   // type: state.childReducer.type,
-  //   // servings: state.childReducer.servings
-  // };
-}
+// function mapStateToProps(state) {
+//   console.log("newFood state", state);
+//   return console.log("{formData: state.childReducer}", {
+//     formData: state.foodReducer
+//   });
+// }
 
-// const mapDispatchToProps = dispatch => ({
-//   handleSubmitToProps: dispatch({ type: NEW_FOOD_POST })
-// });
-
-export default connect(mapStateToProps, { newFood })(FoodForm);
+export default FoodForm;
