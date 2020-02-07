@@ -5,14 +5,17 @@ import { Link } from "react-router-dom";
 import api from "../utils/api";
 import Food from "../FoodList/Food";
 import moment from "moment";
+import styled from 'styled-components';
 
 function ChildProfile(props) {
-  console.log("Child profile props", props);
+  // console.log("Child profile props", props);
   // console.log("child profile props ID", props.match.params.id);
   // console.log("child profile props NAME", props.history.location.state.name);
   const [food, setFood] = useState([
     // { child: { id: 0, name: "", monster_id: 0, parent_id: 0 } }
   ]);
+
+  const [type, setType] = useState([]);
 
   const [child, setChild] = useState([]);
 
@@ -26,13 +29,13 @@ function ChildProfile(props) {
     api()
       .get(`/api/child/${props.match.params.id}`)
       .then(res => {
-        console.log("useEffect ChildProfile", res.data);
+        // console.log("useEffect ChildProfile", res.data);
         setFood(res.data.child_food);
         setChild(res.data.child);
       });
   }, []);
 
-
+  let currentFoodTypes = [];
 
   // const childArray = child.pop();
   // console.log("childArray", childArray);
@@ -42,8 +45,34 @@ function ChildProfile(props) {
 
   const handleChange = event => {
     setDate({ ...date, [event.target.name]: event.target.value });
+
+
+
+
+    console.log("Includes", type.includes(event.target.value))
+    //If it includes, remove it from types
+    if (type.includes(event.target.value)) {
+      const index = type.findIndex((el) => {
+        return el === event.target.value;
+      });
+
+      setType(type.slice(index + 1, index + 2));
+      // console.log("Splice", type)
+      //make another API call to get food
+      //set response to state(food)
+    }
+    else {
+      setType([...type, event.target.value]);
+      food.filter((el, index) => {
+        if (type === el.type) {
+          setType(el);
+        }
+      })
+    }
+
   };
 
+  console.log("FOOOOOOOD", type);
   /* 
     1. loop over the last week of dates and push to new array *
     2. loop over child's food
@@ -56,9 +85,7 @@ function ChildProfile(props) {
     maybe eliminate weekly function and replacing with switch case
   */
 
-
-
-  console.log("Moment date: ", moment().utc().format("YYYY-MM-DD"));
+  // console.log("Moment date: ", moment().utc().format("YYYY-MM-DD"));
 
   let newDailyArray = [];
   let newWeeklyArray = [];
@@ -98,11 +125,11 @@ function ChildProfile(props) {
   }
 
   return (
-    <div className="wrapper">
+    <ContainerDiv>
       {/* <Child /> */}
 
-      {console.log("food", food)}
-      {console.log("child", child)}
+      {/* {console.log("food", food)} */}
+      {/* {console.log("child", child)} */}
       <h1>Hello, {child.name}!</h1>
 
       <img src="https://cdn3.iconfinder.com/data/icons/monsters-3/66/69-512.png" alt="trash" width="150px" /> <br /> <br />
@@ -112,6 +139,7 @@ function ChildProfile(props) {
           pathname: "/food-form",
           state: { id: props.match.params.id }
         }}
+        className="food-button"
       >
         Add Food
         <br />
@@ -130,6 +158,7 @@ function ChildProfile(props) {
         name="current_selection"
         value={date.current_selection}
         onChange={handleChange}
+        className="dropdown"
       >
         <option value="daily" label="Daily" />
         <option value="weekly" label="Weekly" />
@@ -137,18 +166,19 @@ function ChildProfile(props) {
       </select>
 
       <br />
-
-      <input type="checkbox" label="Fruit" /> Fruit
-      <input type="checkbox" label="Vegetable" /> Vegetable
-      <input type="checkbox" label="Whole Grains" /> Whole Grains
-      <input type="checkbox" label="Meat" /> Meat
-      <input type="checkbox" label="Dairy" /> Dairy
-      <input type="checkbox" label="Fats/Oils" /> Fats/Oils
-      <input type="checkbox" label="Treats" /> Treats
+      <div className="checkbox-wrapper">
+        <label className="checkbox-styles"><input type="checkbox" label="Fruit" name="fruit" value="fruit" onChange={handleChange} /> Fruit</label>
+        <label className="checkbox-styles"><input type="checkbox" label="Vegetable" name="vegetable" value="vegetable" onChange={handleChange} /> Vegetable</label>
+        <label className="checkbox-styles"><input type="checkbox" label="Whole Grains" name="whole-grains" value="whole-grains" onChange={handleChange} /> Whole Grains</label>
+        <label className="checkbox-styles"><input type="checkbox" label="Meat" name="meat" value="" value="meat" onChange={handleChange} /> Meat</label>
+        <label className="checkbox-styles"><input type="checkbox" label="Dairy" name="dairy" value="dairy" onChange={handleChange} /> Dairy</label>
+        <label className="checkbox-styles"><input type="checkbox" label="Fats/Oils" name="fats-oils" value="fats-oils" onChange={handleChange} /> Fats/Oils</label>
+        <label className="checkbox-styles"><input type="checkbox" label="Treats" name="treats" value="treats" onChange={handleChange} /> Treats</label>
+      </div>
 
       {weekly()}
 
-      {console.log(date)}
+      {/* {console.log(date)} */}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
       {/* 3) list of food with edit and delete button next to each item */}
       {food.map((e, i) => {
@@ -166,8 +196,31 @@ function ChildProfile(props) {
       <Link to="/add-food" component={FoodForm}>
         Submit
       </Link> */}
-    </div>
+    </ContainerDiv>
   );
 }
 
 export default ChildProfile;
+
+const ContainerDiv = styled.div`
+  .checkbox-wrapper {
+    // background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px 0px;
+
+    .checkbox-styles {
+      padding 0px 10px;
+      padding-top: 1rem;
+    }
+  }
+  .food-button {
+    border: 1.1px solid black;
+    border-radius: 5px;
+    padding: 2px;
+  }
+  .dropdown {
+    margin-top: 10px;
+  }
+`
