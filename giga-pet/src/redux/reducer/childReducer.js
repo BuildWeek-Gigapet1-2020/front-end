@@ -1,8 +1,5 @@
-import { NEW_CHILD_POST } from "../actions/types";
-const initialState = {
-  name: "test",
-  monster_id: 0
-};
+import { NEW_CHILD_POST, LOAD_CHILD } from "../actions/types";
+const initialState = [];
 
 export const childReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,6 +11,8 @@ export const childReducer = (state = initialState, action) => {
         // type: action.payload.type,
         // servings: action.payload.servings
       };
+    case LOAD_CHILD:
+      return [...action.payload];
     default:
       return state;
   }

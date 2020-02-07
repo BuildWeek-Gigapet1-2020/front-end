@@ -1,6 +1,6 @@
 import api from "../../components/utils/api";
 // import { store } from "../store/index";
-import { NEW_CHILD_POST } from "./types";
+import { NEW_CHILD_POST, LOAD_CHILD } from "./types";
 
 export const newChild = (child, props) => dispatch => {
   // dispatch({type: NEW_CHILD_POST})
@@ -17,10 +17,10 @@ export const newChild = (child, props) => dispatch => {
     });
 };
 
-export const loadChild = (child, props) => {
+export const loadChild = child => dispatch => {
   console.log("childActions loadChild child", child);
   api()
-    .get(`/api/child/${props.child.id}`)
+    .get(`/api/child`)
     .then(res => {
       console.log(res.data);
       dispatch({
