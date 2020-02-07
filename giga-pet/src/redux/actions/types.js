@@ -10,3 +10,4 @@ export const NEW_CHILD_POST = "NEW_CHILD_POST";
 export const LOAD_CHILD = "LOAD_CHILD";
 
 export const NEW_FOOD_POST = "NEW_FOOD_POST";
+export const LOAD_FOOD = "LOAD_FOOD";

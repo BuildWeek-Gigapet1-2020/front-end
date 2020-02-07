@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import api from "../utils/api";
 
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { newChild } from "../../redux/actions/childActions";
 
 function ChildForm(props) {
-  console.log("ChildForm props", props);
+  const dispatch = useDispatch();
+
   const [child, setChild] = useState({
     name: "",
     monster_id: 1
@@ -17,8 +17,7 @@ function ChildForm(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    props.newChild(child, props);
-    console.log(child);
+    dispatch(newChild(child, props));
   };
 
   return (
@@ -46,11 +45,4 @@ function ChildForm(props) {
   );
 }
 
-function mapStateToProps(state) {
-  console.log("newChild state", state);
-  return console.log("{formData: state.childReducer}", {
-    formData: state.childReducer
-  });
-}
-
-export default connect(mapStateToProps, { newChild })(ChildForm);
+export default ChildForm;

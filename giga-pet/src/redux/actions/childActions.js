@@ -16,7 +16,7 @@ export const newChild = (child, props) => dispatch => {
     });
 };
 
-export const loadChild = child => dispatch => {
+export const loadChild = props => dispatch => {
   // console.log("childActions loadChild child", child);
   api()
     .get(`/api/child`)

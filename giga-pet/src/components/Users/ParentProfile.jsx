@@ -8,10 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadChild } from "../../redux/actions/childActions";
 
 function ParentProfile(props) {
-  console.log("Parent Profile props", props);
-
   const child = useSelector(state => state.childReducer);
-
   const dispatch = useDispatch();
 
   useEffect(() => {

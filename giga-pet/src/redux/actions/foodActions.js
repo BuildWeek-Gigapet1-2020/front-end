@@ -9,16 +9,27 @@ export const newFood = (food, props) => dispatch => {
   // const childId = food.child_id;
   console.log("food from newFood actions", food);
   // console.log("foodActions childId", childId);
-  return setTimeout(() => {
-    api()
-      .post("/api/foods", food)
-      .then(res => {
-        console.log(res.data);
-        dispatch({
-          type: NEW_FOOD_POST,
-          payload: res.data
-        });
-        // props.history.push(`/child/${childId}`);
+  api()
+    .post("/api/foods", food)
+    .then(res => {
+      console.log(res.data);
+      dispatch({
+        type: NEW_FOOD_POST,
+        payload: res.data
       });
-  }, 1000);
+      // props.history.push(`/child/${childId}`);
+    });
+};
+
+export const loadFood = props => dispatch => {
+  console.log("loadFood props", props);
+  api()
+    .get(`/api/child/${props.match.params.id}`)
+    .then(res => {
+      console.log("loadFood from foodActions on ChildProfile", res.data);
+      dispatch({
+        type: NEW_FOOD_POST,
+        payload: res.data
+      });
+    });
 };

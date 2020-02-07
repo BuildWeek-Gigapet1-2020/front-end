@@ -1,24 +1,19 @@
 import React, { useState } from "react";
-// import api from "../utils/api";
 
 import { useDispatch } from "react-redux";
 import { newFood } from "../../redux/actions/foodActions";
-// import { NEW_FOOD_POST } from "../../redux/actions/types";
 
 function FoodForm(props) {
   console.log("FoodForm props", props);
 
-  // const food = useSelector(state => state.foodReducer);
   const dispatch = useDispatch();
 
-  // const id = props.location.state.id;
   const [food, setFood] = useState({
     name: "",
     child_id: props.location.state.id,
     type: "fruit",
     servings: 0
   });
-  // const id = props.location.state.id;
 
   const handleChange = event => {
     setFood({ ...food, [event.target.name]: event.target.value });
@@ -28,7 +23,6 @@ function FoodForm(props) {
     event.preventDefault();
     dispatch(newFood(food));
     props.history.push(`/child/${food.child_id}`);
-    // console.log(food)
   };
 
   return (
@@ -65,12 +59,5 @@ function FoodForm(props) {
     </form>
   );
 }
-
-// function mapStateToProps(state) {
-//   console.log("newFood state", state);
-//   return console.log("{formData: state.childReducer}", {
-//     formData: state.foodReducer
-//   });
-// }
 
 export default FoodForm;
