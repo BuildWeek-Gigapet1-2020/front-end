@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import api from "../utils/api";
 
 import { connect } from "react-redux";
 import { newFood } from "../../redux/actions/childActions";
