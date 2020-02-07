@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Food(props) {
-  console.log("Food component props", props);
+  // console.log("Food component props", props);
   return (
     <ContainerDiv>
       <div className="edit-delete">
