@@ -30,6 +30,12 @@ function ChildProfile(props) {
   return (
     <div className="wrapper">
       <h1>Hello, {name}</h1>
+      <img
+        src="https://cdn3.iconfinder.com/data/icons/monsters-3/66/69-512.png"
+        alt="trash"
+        width="150px"
+      />
+      <br />
       <Link
         to={{
           pathname: "/food-form",
@@ -39,6 +45,19 @@ function ChildProfile(props) {
         Add Food
         <br />
       </Link>
+      <select>
+        <option value="daily" label="Daily" />
+        <option value="weekly" label="Weekly" />
+        <option value="monthly" label="Monthly" />
+      </select>
+      <br />
+      <input type="checkbox" label="Fruit" /> Fruit
+      <input type="checkbox" label="Vegetable" /> Vegetable
+      <input type="checkbox" label="Whole Grains" /> Whole Grains
+      <input type="checkbox" label="Meat" /> Meat
+      <input type="checkbox" label="Dairy" /> Dairy
+      <input type="checkbox" label="Fats/Oils" /> Fats/Oils
+      <input type="checkbox" label="Treats" /> Treats
       {childFood.map((e, i) => {
         return (
           <div key={i}>
