@@ -4,14 +4,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 // images
-import Gigapet from "../../images/giga-pet-logo.png";
+// import logo from "../images/giga-pet-logo.png";
 
 const token = window.localStorage.getItem("token");
 // src/images/giga-pet-logo.png
 function LoginSignup() {
   return (
     <ContainerDiv>
-      <img src={Gigapet} alt="gigapet logo" width="160px" />
+      {/* <img src={logo} alt="gigapet logo" width="160px" /> */}
+
       <Link to="/login">Log In</Link>
       {!token && <Link to="/signup">Sign Up</Link>}
 
@@ -34,5 +35,8 @@ const ContainerDiv = styled.div`
   @reg-text: "Lato", sans-serif;
   @back-purple: #8a94cd;
 
-  background-color: #8a94cd;
+  display: flex;
+  font-size: 3rem;
+  justify-content: center;
+  flex-direction: column;
 `;
