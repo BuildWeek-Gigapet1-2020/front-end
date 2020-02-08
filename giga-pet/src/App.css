@@ -171,10 +171,11 @@ h1 {
   background-image: url(./images/rainbow-spinner.gif);
   background-repeat: no-repeat;
   display: flex;
-  padding-top: 250px;
+  padding-top: 300px;
   justify-content: center;
   width: 32%;
   margin: 0 auto;
+  align-items: center;
 }
 
 .regular {
