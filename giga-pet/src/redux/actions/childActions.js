@@ -1,22 +1,30 @@
 import api from "../../components/utils/api";
-import { store } from "../store/index";
-import { NEW_CHILD_POST, NEW_FOOD_POST } from "./types";
+// import { store } from "../store/index";
+import { NEW_CHILD_POST, LOAD_CHILD } from "./types";
 
-export const newFood = (food, props) => dispatch => {
-  // dispatch({type: NEW_CHILD_POST})
-  console.log("childActions newFood food", food.child_id);
-  const childId = food.child_id;
-  console.log("childActions childId", childId);
-  return setTimeout(() => {
-    api()
-      .post("/api/foods", food)
-      .then(res => {
-        console.log(res.data);
-        dispatch({
-          type: NEW_FOOD_POST,
-          payload: res.data
-        });
-        props.history.push(`/child/${childId}`);
+export const newChild = (child, props) => dispatch => {
+  // console.log("ChildActions newChild child", child);
+  api()
+    .post(`/api/child/`, child)
+    .then(res => {
+      // console.log(res.data);
+      dispatch({
+        type: NEW_CHILD_POST,
+        payload: res.data
       });
-  }, 1000);
+      props.history.push(`parent-profile`);
+    });
+};
+
+export const loadChild = props => dispatch => {
+  // console.log("childActions loadChild child", child);
+  api()
+    .get(`/api/child`)
+    .then(res => {
+      // console.log(res.data);
+      dispatch({
+        type: LOAD_CHILD,
+        payload: res.data
+      });
+    });
 };

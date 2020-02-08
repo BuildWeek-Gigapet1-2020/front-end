@@ -1,21 +1,12 @@
-import { NEW_CHILD_POST, NEW_FOOD_POST } from "../actions/types";
-const initialState = {
-  name: "test",
-  child_id: 0,
-  type: "test",
-  servings: 0
-};
+import { NEW_CHILD_POST, LOAD_CHILD } from "../actions/types";
+const initialState = [];
 
 export const childReducer = (state = initialState, action) => {
   switch (action.type) {
-    case NEW_FOOD_POST:
-      return {
-        ...action.payload
-        // name: action.payload.name,
-        // child_id: action.payload.child_id,
-        // type: action.payload.type,
-        // servings: action.payload.servings
-      };
+    case NEW_CHILD_POST:
+      return [...action.payload];
+    case LOAD_CHILD:
+      return [...action.payload];
     default:
       return state;
   }

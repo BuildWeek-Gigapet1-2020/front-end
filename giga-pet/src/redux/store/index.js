@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import { userReducer } from "../reducer/userReducer";
+import { foodReducer } from "../reducer/foodReducer";
 import { childReducer } from "../reducer/childReducer";
 
 // const initialState = {};
@@ -11,7 +12,8 @@ const middleware = [thunk];
 
 const rootReducer = combineReducers({
   userReducer,
-  childReducer
+  childReducer,
+  foodReducer
 });
 
 export const store = createStore(
