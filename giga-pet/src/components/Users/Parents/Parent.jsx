@@ -12,4 +12,8 @@ function Parent(props) {
 
 export default Parent;
 
-const ContainerDiv = styled.div``;
+const ContainerDiv = styled.div`
+  h1 {
+    font-size: 4rem;
+  }
+`;

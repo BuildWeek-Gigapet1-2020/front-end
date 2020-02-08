@@ -29,12 +29,4 @@ function Child(props) {
 
 export default Child;
 
-const ContainerDiv = styled.div`
-  border: 1px solid green;
-  // width: 20%;
-  // display: flex;
-
-  .child-card {
-    border: 1px solid red;
-  }
-`;
+const ContainerDiv = styled.div``;

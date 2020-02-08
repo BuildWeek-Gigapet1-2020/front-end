@@ -46,6 +46,7 @@ export default ParentProfile;
 
 const ContainerDiv = styled.div`
   .child-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
   }
 `;
