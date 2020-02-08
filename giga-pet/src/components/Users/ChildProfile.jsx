@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 // import Child from "./Children/Child";
 import Food from "../FoodList/Food";
 
-// import moment from "moment";
+import moment from "moment";
 import styled from "styled-components";
 
 import { useSelector, useDispatch } from "react-redux";
 import { loadFood } from "../../redux/actions/foodActions";
+import { loadChild } from "../../redux/actions/childActions";
 
 function ChildProfile(props) {
   console.log("Child profile props", props);
@@ -19,7 +20,7 @@ function ChildProfile(props) {
   const child = childList.child;
   const childFood = childList.child_food;
 
-  const id = props.location.state.id;
+  // const id = props.location.state.id;
   const name = props.location.state.name;
 
   console.log("child", child);
@@ -27,69 +28,84 @@ function ChildProfile(props) {
 
   useEffect(() => {
     dispatch(loadFood(props));
+    dispatch(loadChild(props));
+    console.log("ran");
   }, [props.match.params.id]);
 
-  // const [type, setType] = useState([]);
+  const [type, setType] = useState([]);
 
-  // const [date, setDate] = useState({
-  //   current_selection: ""
-  // });
-
-  // useEffect(() => {
-  //   fetchData();
-  //   console.log("ran");
-  // }, []);
+  const [date, setDate] = useState({
+    current_selection: ""
+  });
 
   // function fetchData() {
-  //   api()
-  //     .get(`/api/child/${props.match.params.id}`)
-  //     .then(res => {
-  //       // console.log("useEffect ChildProfile", res.data);
-  //       setFood(res.data.child_food);
-  //       setChild(res.data.child);
-  //     });
+  //   dispatch(loadChild(props));
   // }
 
-  // const handleSubmit = event => {
-  //   event.preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
 
-  //   console.log("Food: ", food);
-  //   let results = [];
-  //   for (let i = 0; i < type.length; i++) {
-  //     for (let j = 0; j < food.length; j++) {
-  //       if (type[i] === food[j].type) {
-  //         results.push(food[j]);
-  //       }
-  //     }
-  //   }
-  //   setFood(results);
-  //   setType([]);
-  // };
+    console.log("Food: ", childFood);
+    let results = [];
+    for (let i = 0; i < type.length; i++) {
+      for (let j = 0; j < childFood.length; j++) {
+        if (type[i] === childFood[j].type) {
+          results.push(childFood[j]);
+        }
+      }
+    }
+    dispatch(loadFood(results));
+    setType([]);
+  };
 
-  // const handleChange = event => {
-  //   setDate({ ...date, [event.target.name]: event.target.value });
-  //   setType([...type, event.target.value]);
-  // };
+  const handleChange = event => {
+    setDate({ ...date, [event.target.name]: event.target.value });
+    setType([...type, event.target.value]);
+  };
 
   // console.log("FOOOOOOOD", type);
-  // /*
-  //   1. loop over the last week of dates and push to new array *
-  //   2. loop over child's food
-  //   3. using the food's created_at, loop over the new array of dates and see if it includes any of those dates
-  //   4. Add those to a new array and set that to state
+  /*
+    1. loop over the last week of dates and push to new array *
+    2. loop over child's food
+    3. using the food's created_at, loop over the new array of dates and see if it includes any of those dates
+    4. Add those to a new array and set that to state
 
-  //   possibly implement a switch case for rendering food to DOM
-  //   if selection is weekly, if case is true, run code - if daily, etc...
+    possibly implement a switch case for rendering food to DOM
+    if selection is weekly, if case is true, run code - if daily, etc...
 
-  //   maybe eliminate weekly function and replacing with switch case
-  // */
+    maybe eliminate weekly function and replacing with switch case
+  */
 
-  // // console.log("Moment date: ", moment().utc().format("YYYY-MM-DD"));
+  // console.log("Moment date: ", moment().utc().format("YYYY-MM-DD"));
 
-  // let newDailyArray = [];
-  // let newWeeklyArray = [];
-  // let newMonthlyArray = [];
-  // let foodDateArray = [];
+  let newDailyArray = [];
+  let newWeeklyArray = [];
+  let newMonthlyArray = [];
+  let foodDateArray = [];
+
+  const weekly = () => {
+    if (date.current_selection === "weekly") {
+      //Start weekly check code
+      for (let index = 0; index <= 6; index++) {
+        newWeeklyArray.push(moment().subtract(index, 'days').utc().format("YYYY-MM-DD"));
+      }
+      console.log("Dates: ", newWeeklyArray);
+      let filteredWeeklyArray = [];
+      foodDateArray.filter((e) => {
+        filteredWeeklyArray.push(newWeeklyArray.includes(e));
+      })
+      console.log("Filtered: ", filteredWeeklyArray);
+      //end weekly check code
+    } else if (date.current_selection === "daily") {
+      newDailyArray.push(moment().format("YYYY-MM-DD"));
+      console.log("Dates: ", newDailyArray);
+    } else if (date.current_selection === "monthly") {
+      for (let index = 0; index <= 29; index++) {
+        newMonthlyArray.push(moment().subtract(index, 'days').format("YYYY-MM-DD"));
+      }
+      console.log("Dates: ", newMonthlyArray);
+    }
+  }
 
   return (
     <ContainerDiv>
@@ -122,11 +138,11 @@ function ChildProfile(props) {
             Moment.js, 
       */}
       <br />
-      <form /* onSubmit={handleSubmit} */>
+      <form onSubmit={handleSubmit}>
         <select
           name="current_selection"
-          value="" /* {date.current_selection} */
-          onChange="" /* {handleChange} */
+          value={date.current_selection}
+          onChange={handleChange}
           className="dropdown"
         >
           <option value="daily" label="Daily" />
@@ -140,7 +156,7 @@ function ChildProfile(props) {
             label="Fruit"
             name="fruit"
             value="fruit"
-            onChange="" /* {handleChange} */
+            onChange={handleChange}
           />{" "}
           Fruit
         </label>
@@ -150,7 +166,7 @@ function ChildProfile(props) {
             label="Vegetable"
             name="vegetable"
             value="vegetable"
-            onChange="" /* {handleChange} */
+            onChange={handleChange}
           />{" "}
           Vegetable
         </label>
@@ -160,7 +176,7 @@ function ChildProfile(props) {
             label="Whole Grains"
             name="whole-grains"
             value="whole-grains"
-            onChange="" /* {handleChange} */
+            onChange={handleChange}
           />{" "}
           Whole Grains
         </label>
@@ -171,7 +187,7 @@ function ChildProfile(props) {
             name="meat"
             value=""
             value="meat"
-            onChange="" /* {handleChange} */
+            onChange={handleChange}
           />{" "}
           Meat
         </label>
@@ -181,7 +197,7 @@ function ChildProfile(props) {
             label="Dairy"
             name="dairy"
             value="dairy"
-            onChange="" /* {handleChange} */
+            onChange={handleChange}
           />{" "}
           Dairy
         </label>
@@ -191,7 +207,7 @@ function ChildProfile(props) {
             label="Fats/Oils"
             name="fats-oils"
             value="fats-oils"
-            onChange="" /* {handleChange} */
+            onChange={handleChange}
           />{" "}
           Fats/Oils
         </label>
@@ -201,13 +217,13 @@ function ChildProfile(props) {
             label="Treats"
             name="treats"
             value="treats"
-            onChange="" /* {handleChange} */
+            onChange={handleChange}
           />{" "}
           Treats
         </label>
         <button type="submit">Search</button>
       </form>
-      {/* {weekly()} */}
+      {weekly()}
       {/* {console.log(date)} */}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
       {/* 3) list of food with edit and delete button next to each item */}
