@@ -10,7 +10,10 @@ function Child(props) {
   return (
     <ContainerDiv>
       {/* <Route exact path={`/api/child/${props.child.id}`} component={ChildProfile} /> */}
-
+      <div className="edit-delete">
+        <button className="btn-left">Edit</button>
+        <button className="btn-right">Delete</button>
+      </div>
       <Link
         className="child-card"
         to={{
@@ -26,4 +29,12 @@ function Child(props) {
 
 export default Child;
 
-const ContainerDiv = styled.div``;
+const ContainerDiv = styled.div`
+  border: 1px solid green;
+  // width: 20%;
+  // display: flex;
+
+  .child-card {
+    border: 1px solid red;
+  }
+`;

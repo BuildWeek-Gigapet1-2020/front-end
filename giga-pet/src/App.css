@@ -168,7 +168,7 @@ h1 {
 }
 
 .loader {
-  background-image: url(/static/media/rainbow-spinner.0c194e03.gif);
+  background-image: url(./images/rainbow-spinner.gif);
   background-repeat: no-repeat;
   display: flex;
   padding-top: 250px;

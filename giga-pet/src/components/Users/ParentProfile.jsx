@@ -7,6 +7,8 @@ import Child from "./Children/Child";
 import { useSelector, useDispatch } from "react-redux";
 import { loadChild } from "../../redux/actions/childActions";
 
+import styled from "styled-components";
+
 function ParentProfile(props) {
   console.log("Parent profile props", props);
   const child = useSelector(state => state.childReducer);
@@ -19,21 +21,31 @@ function ParentProfile(props) {
   console.log("child from ParentProfile", child);
 
   return (
-    <div className="wrapper">
+    <ContainerDiv>
       <Parent name={props.history.location.state.credentials.parent_name} />
-
-      {child &&
-        child.map((entry, index) => {
-          return (
-            <div className="child-info" key={index}>
-              <Child child={entry} index={index} />
-            </div>
-          );
-        })}
-
+      <div className="child-container">
+        {child &&
+          child.map((entry, index) => {
+            return (
+              <div className="child-info" key={index}>
+                <Child
+                  child={entry}
+                  index={index}
+                  className="child-component"
+                />
+              </div>
+            );
+          })}
+      </div>
       <Link to="add-child">Add Child</Link>
-    </div>
+    </ContainerDiv>
   );
 }
 
 export default ParentProfile;
+
+const ContainerDiv = styled.div`
+  .child-container {
+    display: flex;
+  }
+`;
