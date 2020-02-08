@@ -12,6 +12,7 @@ import LoginSignup from "./components/Authentication/LoginSignup";
 // import Parent from "./components/Users/Parents/Parent";
 import EditFood from "./components/FoodList/EditFood";
 // import Child from "./components/Users/Children/Child";
+import EditChild from "./components/forms/EditChild";
 
 function App() {
   const [id] = useState();
@@ -62,6 +63,11 @@ function App() {
           exact
           path="/edit-food/:id"
           render={props => <EditFood {...props} id={id} />}
+        />
+        <ProtectedRoute
+          exact
+          path="/edit-child/:id"
+          render={props => <EditChild {...props} id={id} />}
         />
         {/* <ProtectedRoute exact path="/parent" component={Parent} /> */}
       </div>
