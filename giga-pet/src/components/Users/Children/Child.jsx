@@ -38,7 +38,7 @@ function Child(props) {
           }
         }}
       >
-        <h1>{props.child.name}</h1>
+        <h2>{props.child.name}</h2>
       </Link>
     </ContainerDiv>
   );
@@ -46,4 +46,8 @@ function Child(props) {
 
 export default Child;
 
-const ContainerDiv = styled.div``;
+const ContainerDiv = styled.div`
+  h2 {
+    font-size: 2rem;
+  }
+`;
