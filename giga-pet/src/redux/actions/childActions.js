@@ -47,9 +47,9 @@ export const loadChild = props => dispatch => {
     });
 };
 
-export const updateChild = props => dispatch => {
+export const updateChild = (newChild, props) => dispatch => {
   api()
-    .put(`/api/child/${props.match.params.id}`)
+    .put(`/api/child/${props.match.params.id}`, newChild)
     .then(res => {
       console.log("updateChild from childActions on EditChild component");
       dispatch({
