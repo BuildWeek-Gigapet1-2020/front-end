@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { login } from "../../redux/actions/userActions";
 import { connect } from "react-redux";
+import spinner from "../../images/rainbow-spinner.gif";
 
 function Login(props) {
   console.log("login props", props);
@@ -74,6 +75,7 @@ function Login(props) {
             Log In
           </button>
           <div className={props.isLoading ? "loader" : "displayNone"}>
+            <img src={spinner} alt="" />
             <h1>Loading...</h1>
           </div>
         </form>
@@ -95,9 +97,16 @@ export default connect(mapStateToProps, { login })(Login);
 const ContainerDiv = styled.div`
   font-size: 3rem;
 
+  .loader {
+    margin-top: 150px;
+  }
+
   input {
-    width: 40%;
-    height: 40px;
+    border-radius: 10px;
+    padding: 1.5%;
+    margin: 0.7%;
+    width: 37%;
+    font-size: 1rem;
   }
 
   .displayNone {
@@ -105,8 +114,8 @@ const ContainerDiv = styled.div`
   }
 
   button {
-    width: 40%;
-    height: 50px;
+    width: 10%;
+    height: 58px;
     background-color: #74b456;
     border: 2px solid #4b8f29;
     border-radius: 10px;
