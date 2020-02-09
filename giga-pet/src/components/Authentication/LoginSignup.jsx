@@ -67,26 +67,28 @@ const ContainerDiv = styled.div`
   }
 
   .link-monster {
-  }
-  .links {
-    display: flex;
-    justify-content: space-between;
-    width: 35%;
-    margin: 0 auto;
-  }
-  .link {
-    text-decoration: none;
-    color: white;
-    border: 7px solid;
-    border-radius: 18px;
-    padding: 1% 2% 1% 2%;
-    width: 25%;
-  }
+    .links {
+      display: flex;
+      justify-content: space-between;
+      width: 35%;
+      margin: 0 auto;
 
-  .monsters {
-    margin-top: 5%;
-  }
-  .monster {
-    width: 20%;
+      .link {
+        text-decoration: none;
+        color: white;
+        border: 7px solid;
+        border-radius: 18px;
+        padding: 1% 2% 1% 2%;
+        width: 25%;
+      }
+    }
+
+    .monsters {
+      margin-top: 5%;
+
+      .monster {
+        width: 20%;
+      }
+    }
   }
 `;
