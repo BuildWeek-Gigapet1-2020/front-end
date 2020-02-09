@@ -8,11 +8,12 @@ import {
 } from "./types";
 
 export const newChild = (child, props) => dispatch => {
-  // console.log("ChildActions newChild child", child);
+  console.log("ChildActions newChild child", child);
+  console.log("ChildActions newChild props", props);
   api()
     .post(`/api/child/`, child)
     .then(res => {
-      // console.log(res.data);
+      console.log(res.data);
       dispatch({
         type: NEW_CHILD_POST,
         payload: res.data
@@ -56,5 +57,6 @@ export const updateChild = (newChild, props) => dispatch => {
         type: UPDATE_CHILD,
         payload: res.data
       });
+      // props.history.push(`parent-profile`);
     });
 };

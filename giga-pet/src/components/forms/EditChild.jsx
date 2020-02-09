@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { loadChild } from "../../redux/actions/childActions";
+import { loadChild, updateChild } from "../../redux/actions/childActions";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -22,8 +22,9 @@ function EditChild(props) {
   };
 
   const handleSubmit = event => {
-    // event.preventDefault();
-    // dispatch(newChild(child, props));
+    event.preventDefault();
+    dispatch(updateChild(newChild, props));
+    props.history.push(`parent-profile`);
   };
 
   return (

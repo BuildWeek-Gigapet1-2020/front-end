@@ -22,7 +22,8 @@ function ParentProfile(props) {
 
   return (
     <ContainerDiv>
-      <Parent name={props.history.location.state.credentials.parent_name} />
+      {/* <Parent name={props.history.location.state.credentials.parent_name} /> */}
+      <h1>Parent Profile</h1>
       <div className="child-container">
         {child &&
           child.map((entry, index) => {
