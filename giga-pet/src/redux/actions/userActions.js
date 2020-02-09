@@ -21,7 +21,7 @@ export const login = (creds, props) => dispatch => {
         });
       })
       .catch(err => console.log(err.response));
-  }, 2000);
+  }, 1000);
 };
 
 store.subscribe(login);

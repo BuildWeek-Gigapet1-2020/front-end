@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { newChild } from "../../redux/actions/childActions";
 
 function ChildForm(props) {
+  console.log("ChildForm props", props);
   const dispatch = useDispatch();
 
   const [child, setChild] = useState({

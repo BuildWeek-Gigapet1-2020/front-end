@@ -12,6 +12,7 @@ import LoginSignup from "./components/Authentication/LoginSignup";
 // import Parent from "./components/Users/Parents/Parent";
 import EditFood from "./components/FoodList/EditFood";
 // import Child from "./components/Users/Children/Child";
+import EditChild from "./components/forms/EditChild";
 
 function App() {
   const [id] = useState();
@@ -30,9 +31,9 @@ function App() {
           render={props => (
             <ChildProfile
               {...props}
-              id={id}
-              setChild={setChild}
-              child={child}
+              // id={id}
+              // setChild={setChild}
+              // child={child}
             />
           )}
         />
@@ -53,6 +54,18 @@ function App() {
             />
           )}
         />
+        {/* <ProtectedRoute
+          exact
+          path="edit-child/parent-profile"
+          render={props => (
+            <ParentProfile
+              {...props}
+              id={id}
+              setChild={setChild}
+              child={child}
+            />
+          )}
+        /> */}
         <ProtectedRoute
           exact
           path="/food-form"
@@ -63,6 +76,12 @@ function App() {
           path="/edit-food/:id"
           render={props => <EditFood {...props} id={id} />}
         />
+        <ProtectedRoute
+          exact
+          path="/edit-child/:id"
+          render={props => <EditChild {...props} id={id} />}
+        />
+
         {/* <ProtectedRoute exact path="/parent" component={Parent} /> */}
       </div>
     </div>

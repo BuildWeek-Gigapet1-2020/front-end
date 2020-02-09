@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 import { useSelector, useDispatch } from "react-redux";
 import { loadFood } from "../../redux/actions/foodActions";
-import { loadChild } from "../../redux/actions/childActions";
+import { loadChildren } from "../../redux/actions/childActions";
 
 function ChildProfile(props) {
   console.log("Child profile props", props);
@@ -28,9 +28,9 @@ function ChildProfile(props) {
 
   useEffect(() => {
     dispatch(loadFood(props));
-    dispatch(loadChild(props));
+    dispatch(loadChildren(props));
     console.log("ran");
-  }, [props.match.params.id]);
+  }, [dispatch, props]);
 
   const [type, setType] = useState([]);
 
@@ -39,7 +39,7 @@ function ChildProfile(props) {
   });
 
   // function fetchData() {
-  //   dispatch(loadChild(props));
+  //   dispatch(loadChildren(props));
   // }
 
   const handleSubmit = event => {
@@ -87,13 +87,18 @@ function ChildProfile(props) {
     if (date.current_selection === "weekly") {
       //Start weekly check code
       for (let index = 0; index <= 6; index++) {
-        newWeeklyArray.push(moment().subtract(index, 'days').utc().format("YYYY-MM-DD"));
+        newWeeklyArray.push(
+          moment()
+            .subtract(index, "days")
+            .utc()
+            .format("YYYY-MM-DD")
+        );
       }
       console.log("Dates: ", newWeeklyArray);
       let filteredWeeklyArray = [];
-      foodDateArray.filter((e) => {
+      foodDateArray.filter(e => {
         filteredWeeklyArray.push(newWeeklyArray.includes(e));
-      })
+      });
       console.log("Filtered: ", filteredWeeklyArray);
       //end weekly check code
     } else if (date.current_selection === "daily") {
@@ -101,11 +106,15 @@ function ChildProfile(props) {
       console.log("Dates: ", newDailyArray);
     } else if (date.current_selection === "monthly") {
       for (let index = 0; index <= 29; index++) {
-        newMonthlyArray.push(moment().subtract(index, 'days').format("YYYY-MM-DD"));
+        newMonthlyArray.push(
+          moment()
+            .subtract(index, "days")
+            .format("YYYY-MM-DD")
+        );
       }
       console.log("Dates: ", newMonthlyArray);
     }
-  }
+  };
 
   return (
     <ContainerDiv>
