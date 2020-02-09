@@ -26,6 +26,7 @@ function ParentProfile(props) {
     <ContainerDiv>
       {/* <Parent name={props.history.location.state.credentials.parent_name} /> */}
       <h1>Parent Profile</h1>
+      <Link to="add-child">Add Child</Link>
       <div className="child-container">
         {childState.children.map((entry, index) => {
           return (
@@ -40,7 +41,6 @@ function ParentProfile(props) {
           );
         })}
       </div>
-      <Link to="add-child">Add Child</Link>
     </ContainerDiv>
   );
 }
