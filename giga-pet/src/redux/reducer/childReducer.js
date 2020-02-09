@@ -1,12 +1,14 @@
-import { NEW_CHILD_POST, LOAD_CHILD } from "../actions/types";
+import { NEW_CHILD_POST, LOAD_CHILDREN, LOAD_CHILD } from "../actions/types";
 const initialState = [];
 
 export const childReducer = (state = initialState, action) => {
   switch (action.type) {
     case NEW_CHILD_POST:
       return [...action.payload];
-    case LOAD_CHILD:
+    case LOAD_CHILDREN:
       return [...action.payload];
+    case LOAD_CHILD:
+      return { ...action.payload };
     default:
       return state;
   }

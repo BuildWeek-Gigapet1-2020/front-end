@@ -11,11 +11,19 @@ function Child(props) {
     <ContainerDiv>
       {/* <Route exact path={`/api/child/${props.child.id}`} component={ChildProfile} /> */}
       <div className="edit-delete">
-        {/* <Link to={{
-          pathname: `child/${props.child.id}`
-          state: {id: props.child.id, name: props.child.name}
-        }} */}
-        <button className="btn-left">Edit</button>
+        <Link
+          to={{
+            pathname: `edit-child/${props.child.id}`,
+            state: {
+              id: props.child.id,
+              name: props.child.name,
+              monster_id: props.child.monster_id,
+              parent_id: props.child.parent_id
+            }
+          }}
+        >
+          <button className="btn-left">Edit</button>
+        </Link>
         <button className="btn-right">Delete</button>
       </div>
       <Link

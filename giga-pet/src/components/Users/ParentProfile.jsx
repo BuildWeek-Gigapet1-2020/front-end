@@ -5,7 +5,7 @@ import Parent from "./Parents/Parent";
 import Child from "./Children/Child";
 
 import { useSelector, useDispatch } from "react-redux";
-import { loadChild } from "../../redux/actions/childActions";
+import { loadChildren } from "../../redux/actions/childActions";
 
 import styled from "styled-components";
 
@@ -15,7 +15,7 @@ function ParentProfile(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadChild());
+    dispatch(loadChildren());
   }, [dispatch]);
 
   console.log("child from ParentProfile", child);

@@ -1,6 +1,11 @@
 import api from "../../components/utils/api";
 // import { store } from "../store/index";
-import { NEW_CHILD_POST, LOAD_CHILD } from "./types";
+import {
+  NEW_CHILD_POST,
+  LOAD_CHILDREN,
+  LOAD_CHILD,
+  UPDATE_CHILD
+} from "./types";
 
 export const newChild = (child, props) => dispatch => {
   // console.log("ChildActions newChild child", child);
@@ -16,14 +21,39 @@ export const newChild = (child, props) => dispatch => {
     });
 };
 
-export const loadChild = props => dispatch => {
-  // console.log("childActions loadChild child", child);
+export const loadChildren = props => dispatch => {
+  // console.log("childActions loadChildren child", child);
   api()
     .get(`/api/child`)
     .then(res => {
       // console.log(res.data);
       dispatch({
+        type: LOAD_CHILDREN,
+        payload: res.data
+      });
+    });
+};
+
+export const loadChild = props => dispatch => {
+  console.log("loadChild props", props);
+  api()
+    .get(`/api/child/${props.match.params.id}`)
+    .then(res => {
+      console.log("loadChild from childActions on EditChild", res.data);
+      dispatch({
         type: LOAD_CHILD,
+        payload: res.data
+      });
+    });
+};
+
+export const updateChild = props => dispatch => {
+  api()
+    .put(`/api/child/${props.match.params.id}`)
+    .then(res => {
+      console.log("updateChild from childActions on EditChild component");
+      dispatch({
+        type: UPDATE_CHILD,
         payload: res.data
       });
     });

@@ -31,9 +31,9 @@ function App() {
           render={props => (
             <ChildProfile
               {...props}
-              id={id}
-              setChild={setChild}
-              child={child}
+              // id={id}
+              // setChild={setChild}
+              // child={child}
             />
           )}
         />
