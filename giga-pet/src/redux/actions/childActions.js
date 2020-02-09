@@ -16,7 +16,7 @@ export const newChild = (child, props) => dispatch => {
       console.log(res.data);
       dispatch({
         type: NEW_CHILD_POST,
-        payload: res.data
+        payload: res.data[0]
       });
       props.history.push(`parent-profile`);
     });
@@ -55,8 +55,8 @@ export const updateChild = (newChild, props) => dispatch => {
       console.log("updateChild from childActions on EditChild component");
       dispatch({
         type: UPDATE_CHILD,
-        payload: res.data
+        payload: newChild
       });
-      // props.history.push(`parent-profile`);
+      // props.history.push(`/parent-profile`);
     });
 };

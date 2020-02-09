@@ -54,6 +54,18 @@ function App() {
             />
           )}
         />
+        {/* <ProtectedRoute
+          exact
+          path="edit-child/parent-profile"
+          render={props => (
+            <ParentProfile
+              {...props}
+              id={id}
+              setChild={setChild}
+              child={child}
+            />
+          )}
+        /> */}
         <ProtectedRoute
           exact
           path="/food-form"
@@ -69,6 +81,7 @@ function App() {
           path="/edit-child/:id"
           render={props => <EditChild {...props} id={id} />}
         />
+
         {/* <ProtectedRoute exact path="/parent" component={Parent} /> */}
       </div>
     </div>
