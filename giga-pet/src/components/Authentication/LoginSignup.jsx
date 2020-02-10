@@ -31,8 +31,8 @@ function LoginSignup() {
         <div className="monsters">
           <img src={orange} alt="" className="monster" />
           <img src={red} alt="" className="monster" />
-          <img src={green} alt="" className="monster" />
           <img src={pink} alt="" className="monster" />
+          <img src={green} alt="" className="monster" />
         </div>
       </div>
       {/* <Link to="/signup">Sign Up</Link> */}
