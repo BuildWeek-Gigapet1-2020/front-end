@@ -15,8 +15,10 @@ const token = window.localStorage.getItem("token");
 function LoginSignup() {
   return (
     <ContainerDiv>
-      <img src={logo} alt="gigapet logo" width="160px" />
-      <h1>Learn What to Eat With a GigaPet Of Your Own!</h1>
+      <div className="logo-header">
+        <img src={logo} alt="gigapet logo" width="160px" />
+        <h1>Learn What to Eat With a GigaPet Of Your Own!</h1>
+      </div>
       <div className="link-monster">
         <div className="links">
           <Link to="/login" className="link">
@@ -59,18 +61,27 @@ const ContainerDiv = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  h1 {
-    font-size: 3rem;
-    color: white;
-    margin-bottom: 70px;
-    margin-top: 0px;
+  .logo-header {
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+
+    h1 {
+      font-size: 3rem;
+      color: white;
+      // margin-bottom: 70px;
+      // margin-top: 0px;
+      margin-left: 4%;
+    }
   }
 
   .link-monster {
+    margin-top: 5%;
+
     .links {
       display: flex;
       justify-content: space-between;
-      width: 35%;
+      width: 50%;
       margin: 0 auto;
 
       .link {
