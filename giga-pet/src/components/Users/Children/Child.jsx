@@ -82,25 +82,56 @@ export default Child;
 
 const ContainerDiv = styled.div`
   // border: 1px solid red;
-
-  a {
-    text-decoration: none;
-  }
-
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 0px;
-    color: #ffffff;
-    text-shadow 2px 2px #74b456;
-  }
-  img {
-    margin-top: 5%;
-    height: 130px;
-  }
   .child-box {
     background-color: rgb(255, 255, 255, 0.35);
-    padding: 5%;
+    padding: 0% 0% 4% 0%;
     margin: 5%;
     border-radius: 25px;
-  }
+
+    a {
+        text-decoration: none;
+      }
+
+    .edit-delete {
+      display: block;
+
+
+      .btn-left, .btn-right {
+        background-color: #74b456;
+        border: 1px solid #4b8f29;
+        font-family: "Bubblegum Sans", cursive;
+        height: 30px;
+        width: 42%;
+        padding: 2% 11% 2% 6%;
+        margin: 3%;
+        border-radius: 10px;
+        -webkit-box-shadow: 2px 7px 8px 0px rgba(72,119,61,1);
+        -moz-box-shadow: 2px 7px 8px 0px rgba(72,119,61,1);
+        box-shadow: 2px 7px 8px 0px rgba(72,119,61,1);
+      }
+      
+    }
+
+    img {
+        margin-top: 5%;
+        height: 130px;
+      }
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 0px;
+        color: #ffffff;
+        text-shadow 2px 2px #74b456;
+      }
+
+}
+
+
+
+  
+  
+
+  
+  
+  
 `;
