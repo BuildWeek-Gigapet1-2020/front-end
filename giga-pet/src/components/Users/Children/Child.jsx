@@ -102,13 +102,16 @@ const ContainerDiv = styled.div`
         font-family: "Bubblegum Sans", cursive;
         height: 30px;
         width: 42%;
-        padding: 2% 11% 2% 6%;
+        padding: 2% 7% 10% 6%;
         margin: 3%;
         border-radius: 10px;
         -webkit-box-shadow: 2px 7px 8px 0px rgba(72,119,61,1);
         -moz-box-shadow: 2px 7px 8px 0px rgba(72,119,61,1);
         box-shadow: 2px 7px 8px 0px rgba(72,119,61,1);
+        color: white;
+        font-size: 1.2rem;
       }
+      
       
     }
 
