@@ -18,12 +18,13 @@ function ChildProfile(props) {
   const childProfile = useSelector(state => state.childReducer);
   const dispatch = useDispatch();
 
-  const child = childList.child;
+  const child_id = childList.child.child.id;
   let childFood = childList.child.child_food;
   const name = childProfile.child.child.name;
   // const id = props.location.state.id;
   // const name = props.location.state.name;
 
+  console.log("child_id", child_id);
   console.log("childList", childList);
   console.log("childFood", childFood);
   console.log("child2 from childReducer", childProfile.child.child.name);
@@ -128,6 +129,9 @@ function ChildProfile(props) {
       {/* <Child /> */}
       {/* {console.log("food", food)} */}
       {/* {console.log("child", child)} */}
+      <Link to="/parent-profile">
+        <button className="btn-parent">Parent Profile</button>
+      </Link>
       <h1>Hello, {name}!</h1>
       <img
         src="https://cdn3.iconfinder.com/data/icons/monsters-3/66/69-512.png"
