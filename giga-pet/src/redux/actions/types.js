@@ -13,3 +13,4 @@ export const UPDATE_CHILD = "UPDATE_CHILD";
 
 export const NEW_FOOD_POST = "NEW_FOOD_POST";
 export const LOAD_FOOD = "LOAD_FOOD";
+export const SORT_FOOD = "SORT_FOOD";

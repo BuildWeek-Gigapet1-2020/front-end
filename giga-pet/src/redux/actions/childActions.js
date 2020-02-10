@@ -27,7 +27,7 @@ export const loadChildren = props => dispatch => {
   api()
     .get(`/api/child`)
     .then(res => {
-      // console.log(res.data);
+      // console.log("res.data from ");
       dispatch({
         type: LOAD_CHILDREN,
         payload: res.data

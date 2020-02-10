@@ -8,27 +8,37 @@ import moment from "moment";
 import styled from "styled-components";
 
 import { useSelector, useDispatch } from "react-redux";
-import { loadFood } from "../../redux/actions/foodActions";
-import { loadChildren } from "../../redux/actions/childActions";
+import { loadFood, sortFood } from "../../redux/actions/foodActions";
+import { loadChild } from "../../redux/actions/childActions";
+
+import orange from "../../images/mon-orange-two.png";
+import red from "../../images/mon-red-four.png";
+import green from "../../images/mon-teal-one.png";
+import purple from "../../images/mon-purple.png";
 
 function ChildProfile(props) {
   console.log("Child profile props", props);
 
   const childList = useSelector(state => state.foodReducer);
+  const childProfile = useSelector(state => state.childReducer);
   const dispatch = useDispatch();
 
-  const child = childList.child;
-  const childFood = childList.child_food;
-
+  const child_id = childList.child.child.id;
+  let childFood = childList.child.child_food;
+  const name = childProfile.child.child.name;
+  const monsterId = childProfile.child.child.monster_id;
   // const id = props.location.state.id;
-  const name = props.location.state.name;
+  // const name = props.location.state.name;
 
-  console.log("child", child);
+  console.log("child_id", child_id);
+  console.log("childList", childList);
   console.log("childFood", childFood);
+  console.log("Monster ID", childProfile.child.child.monster_id);
+  console.log("child2 from childReducer", childProfile.child.child.name);
 
   useEffect(() => {
     dispatch(loadFood(props));
-    dispatch(loadChildren(props));
+    dispatch(loadChild(props));
     console.log("ran");
   }, [dispatch, props]);
 
@@ -45,7 +55,7 @@ function ChildProfile(props) {
   const handleSubmit = event => {
     event.preventDefault();
 
-    console.log("Food: ", childFood);
+    console.log("childList in handleSubmit 1", childList);
     let results = [];
     for (let i = 0; i < type.length; i++) {
       for (let j = 0; j < childFood.length; j++) {
@@ -54,7 +64,9 @@ function ChildProfile(props) {
         }
       }
     }
-    dispatch(loadFood(results));
+    dispatch(sortFood(results));
+    // childFood = childList.sorted_food;
+    console.log("childFood handleSubmit", childFood);
     setType([]);
   };
 
@@ -63,6 +75,9 @@ function ChildProfile(props) {
     setType([...type, event.target.value]);
   };
 
+  function resetList() {
+    window.location.reload(false);
+  }
   // console.log("FOOOOOOOD", type);
   /*
     1. loop over the last week of dates and push to new array *
@@ -121,13 +136,15 @@ function ChildProfile(props) {
       {/* <Child /> */}
       {/* {console.log("food", food)} */}
       {/* {console.log("child", child)} */}
+      <Link to="/parent-profile">
+        <button className="btn-parent">&lt; Parent Profile</button>
+      </Link>
       <h1>Hello, {name}!</h1>
-      <img
-        src="https://cdn3.iconfinder.com/data/icons/monsters-3/66/69-512.png"
-        alt="trash"
-        width="150px"
-      />{" "}
-      <br /> <br />
+      <img src={monsterId == 1 ? orange : null} className="monster" alt="" />
+      <img src={monsterId == 2 ? red : null} className="monster" alt="" />
+      <img src={monsterId == 3 ? green : null} className="monster" alt="" />
+      <img src={monsterId == 4 ? purple : null} className="monster" alt="" />
+
       <Link
         to={{
           pathname: "/food-form",
@@ -135,7 +152,7 @@ function ChildProfile(props) {
         }}
         className="food-button"
       >
-        Add Food
+        + Add Food
         <br />
       </Link>
       {/* <h2></h2> */}
@@ -159,90 +176,97 @@ function ChildProfile(props) {
           <option value="monthly" label="Monthly" />
         </select>
 
-        <label className="checkbox-styles">
-          <input
-            type="checkbox"
-            label="Fruit"
-            name="fruit"
-            value="fruit"
-            onChange={handleChange}
-          />{" "}
-          Fruit
-        </label>
-        <label className="checkbox-styles">
-          <input
-            type="checkbox"
-            label="Vegetable"
-            name="vegetable"
-            value="vegetable"
-            onChange={handleChange}
-          />{" "}
-          Vegetable
-        </label>
-        <label className="checkbox-styles">
-          <input
-            type="checkbox"
-            label="Whole Grains"
-            name="whole-grains"
-            value="whole-grains"
-            onChange={handleChange}
-          />{" "}
-          Whole Grains
-        </label>
-        <label className="checkbox-styles">
-          <input
-            type="checkbox"
-            label="Meat"
-            name="meat"
-            value=""
-            value="meat"
-            onChange={handleChange}
-          />{" "}
-          Meat
-        </label>
-        <label className="checkbox-styles">
-          <input
-            type="checkbox"
-            label="Dairy"
-            name="dairy"
-            value="dairy"
-            onChange={handleChange}
-          />{" "}
-          Dairy
-        </label>
-        <label className="checkbox-styles">
-          <input
-            type="checkbox"
-            label="Fats/Oils"
-            name="fats-oils"
-            value="fats-oils"
-            onChange={handleChange}
-          />{" "}
-          Fats/Oils
-        </label>
-        <label className="checkbox-styles">
-          <input
-            type="checkbox"
-            label="Treats"
-            name="treats"
-            value="treats"
-            onChange={handleChange}
-          />{" "}
-          Treats
-        </label>
+        <div className="check-sort">
+          <label className="checkbox-styles">
+            <input
+              type="checkbox"
+              label="Fruit"
+              name="fruit"
+              value="fruit"
+              onChange={handleChange}
+            />{" "}
+            Fruit
+          </label>
+          <label className="checkbox-styles">
+            <input
+              type="checkbox"
+              label="Vegetable"
+              name="vegetable"
+              value="vegetable"
+              onChange={handleChange}
+            />{" "}
+            Vegetable
+          </label>
+          <label className="checkbox-styles">
+            <input
+              type="checkbox"
+              label="Whole Grains"
+              name="whole-grains"
+              value="whole-grains"
+              onChange={handleChange}
+            />{" "}
+            Whole Grains
+          </label>
+          <label className="checkbox-styles">
+            <input
+              type="checkbox"
+              label="Meat"
+              name="meat"
+              value=""
+              value="meat"
+              onChange={handleChange}
+            />{" "}
+            Meat
+          </label>
+          <label className="checkbox-styles">
+            <input
+              type="checkbox"
+              label="Dairy"
+              name="dairy"
+              value="dairy"
+              onChange={handleChange}
+            />{" "}
+            Dairy
+          </label>
+          <label className="checkbox-styles">
+            <input
+              type="checkbox"
+              label="Fats/Oils"
+              name="fats-oils"
+              value="fats-oils"
+              onChange={handleChange}
+            />{" "}
+            Fats/Oils
+          </label>
+          <label className="checkbox-styles">
+            <input
+              type="checkbox"
+              label="Treats"
+              name="treats"
+              value="treats"
+              onChange={handleChange}
+            />{" "}
+            Treats
+          </label>
+        </div>
         <button type="submit">Search</button>
       </form>
+      <button type="button" onClick={resetList}>
+        Reset
+      </button>
       {weekly()}
       {/* {console.log(date)} */}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
       {/* 3) list of food with edit and delete button next to each item */}
-      {childFood.map((e, i) => {
-        return (
-          <div key={i}>
-            <Food food={e} index={i} />
-          </div>
-        );
-      })}
+      <div className="food-container">
+        {childFood.map((e, i) => {
+          return (
+            <div key={i} className="single-food">
+              <Food food={e} index={i} />
+            </div>
+          );
+        })}
+      </div>
       {/* 4) add new food button */}
       {/* 5) display a picture of the child's monster choice */}
       {/* <Route exact path="/add-food"></Route>
@@ -255,4 +279,40 @@ function ChildProfile(props) {
 
 export default ChildProfile;
 
-const ContainerDiv = styled.div``;
+const ContainerDiv = styled.div`
+  .monster {
+    width: 15%;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 22%;
+
+    select {
+      width: 50%;
+    }
+
+    .check-sort {
+      display: grid;
+      text-align: left;
+      grid-template-columns: 50% 50%;
+
+      .checkbox {
+        text-align: left;
+      }
+    }
+  }
+  .food-container {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    margin-top: 3%;
+
+    .single-food {
+      background-color: rgb(255, 255, 255, 0.35);
+      padding: 0% 0% 4% 0%;
+      margin: 5%;
+      border-radius: 25px;
+      font-size: 0.95rem;
+    }
+  }
+`;

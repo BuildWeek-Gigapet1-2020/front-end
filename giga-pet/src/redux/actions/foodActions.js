@@ -1,6 +1,6 @@
 import api from "../../components/utils/api";
 // import { store } from "../store/index";
-import { NEW_FOOD_POST, LOAD_FOOD } from "./types";
+import { NEW_FOOD_POST, LOAD_FOOD, SORT_FOOD } from "./types";
 
 export const newFood = (food, props) => dispatch => {
   // dispatch({type: NEW_CHILD_POST})
@@ -15,7 +15,7 @@ export const newFood = (food, props) => dispatch => {
       console.log(res.data);
       dispatch({
         type: NEW_FOOD_POST,
-        payload: res.data
+        payload: res.data[0]
       });
       // props.history.push(`/child/${childId}`);
     });
@@ -26,10 +26,21 @@ export const loadFood = props => dispatch => {
   api()
     .get(`/api/child/${props.match.params.id}`)
     .then(res => {
-      console.log("loadFood from foodActions on ChildProfile", res.data);
+      console.log(
+        "loadFood from foodActions on ChildProfile",
+        res.data.child_food
+      );
       dispatch({
         type: LOAD_FOOD,
         payload: res.data
       });
     });
+};
+
+export const sortFood = props => dispatch => {
+  console.log("sortFood props", props);
+  dispatch({
+    type: SORT_FOOD,
+    payload: props
+  });
 };

@@ -8,7 +8,20 @@ function Food(props) {
   return (
     <ContainerDiv>
       <div className="edit-delete">
-        <Link to={{ pathname: `/edit-food/${props.food.name}`, state: {id: props.id, name: props.name, created_at: props.created_at, updated_at: props.updated_at, child_id: props.child_id, type: props.type, servings: props.servings}  }}>
+        <Link
+          to={{
+            pathname: `/edit-food/${props.food.name}`,
+            state: {
+              id: props.id,
+              name: props.name,
+              created_at: props.created_at,
+              updated_at: props.updated_at,
+              child_id: props.child_id,
+              type: props.type,
+              servings: props.servings
+            }
+          }}
+        >
           <button className="btn-left">
             <p>Edit</p>
           </button>
@@ -29,16 +42,30 @@ function Food(props) {
 export default Food;
 
 const ContainerDiv = styled.div`
-  .edit-delete {
-    display: flex;
-    justify-content: center;
-    margin-top: 5%;
 
-    .btn-left {
-      margin-right: 5%;
+.edit-delete {
+  display: block;
+  
+
+  .btn-left, .btn-right {
+    background-color: #74b456;
+    border: 1px solid #4b8f29;
+    font-family: "Bubblegum Sans",cursive;
+    width: 39%;
+    margin: 3%;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 7px 8px 0px rgba(72,119,61,1);
+    -moz-box-shadow: 2px 7px 8px 0px rgba(72,119,61,1);
+    box-shadow: 2px 7px 8px 0px rgba(72,119,61,1);
+    color: white;
+    font-size: 1.2rem;
+    padding: 2%;
+
+    p {
+      padding: 0px;
+      margin: 0px;
     }
   }
 `;
-
 
 // to={{ pathname: `/edit-food/${props.id}`, state: {id: props.id, name: props.name, created_at: props.created_at, updated_at: props.updated_at, child_id: props.child_id, type: props.type, servings: props.servings}  }}

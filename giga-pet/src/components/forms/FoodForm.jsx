@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { newFood } from "../../redux/actions/foodActions";
+import { loadChild } from "../../redux/actions/childActions";
 
 function FoodForm(props) {
   console.log("FoodForm props", props);
 
+  const child = useSelector(state => state.childReducer);
   const dispatch = useDispatch();
+
+  console.log("child from childReducer", child);
 
   const [food, setFood] = useState({
     name: "",
@@ -18,10 +22,11 @@ function FoodForm(props) {
   const handleChange = event => {
     setFood({ ...food, [event.target.name]: event.target.value });
   };
-
+  console.log("food from current state", food);
   const handleSubmit = event => {
     event.preventDefault();
     dispatch(newFood(food));
+    dispatch(loadChild(props));
     props.history.push(`/child/${food.child_id}`);
   };
 
