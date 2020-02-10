@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 import { useSelector, useDispatch } from "react-redux";
 import { loadFood } from "../../redux/actions/foodActions";
-import { loadChildren } from "../../redux/actions/childActions";
+import { loadChild } from "../../redux/actions/childActions";
 
 function ChildProfile(props) {
   console.log("Child profile props", props);
@@ -18,17 +18,17 @@ function ChildProfile(props) {
   const dispatch = useDispatch();
 
   const child = childList.child;
-  const childFood = childList.child_food;
+  const childFood = childList.child.child_food;
 
   // const id = props.location.state.id;
-  const name = props.location.state.name;
+  // const name = props.location.state.name;
 
-  console.log("child", child);
+  console.log("childList", childList);
   console.log("childFood", childFood);
 
   useEffect(() => {
     dispatch(loadFood(props));
-    dispatch(loadChildren(props));
+    dispatch(loadChild(props));
     console.log("ran");
   }, [dispatch, props]);
 
@@ -121,7 +121,7 @@ function ChildProfile(props) {
       {/* <Child /> */}
       {/* {console.log("food", food)} */}
       {/* {console.log("child", child)} */}
-      <h1>Hello, {name}!</h1>
+      {/* <h1>Hello, {name}!</h1> */}
       <img
         src="https://cdn3.iconfinder.com/data/icons/monsters-3/66/69-512.png"
         alt="trash"

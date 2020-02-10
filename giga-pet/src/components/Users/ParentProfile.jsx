@@ -20,7 +20,7 @@ function ParentProfile(props) {
     dispatch(loadChildren(props));
   }, [dispatch]);
 
-  console.log("childState from ParentProfile", childState);
+  console.log("childState.children from ParentProfile", childState.children);
 
   return (
     <ContainerDiv>

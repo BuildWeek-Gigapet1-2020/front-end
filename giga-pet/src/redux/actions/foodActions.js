@@ -15,7 +15,7 @@ export const newFood = (food, props) => dispatch => {
       console.log(res.data);
       dispatch({
         type: NEW_FOOD_POST,
-        payload: res.data
+        payload: res.data[0]
       });
       // props.history.push(`/child/${childId}`);
     });
@@ -26,7 +26,10 @@ export const loadFood = props => dispatch => {
   api()
     .get(`/api/child/${props.match.params.id}`)
     .then(res => {
-      console.log("loadFood from foodActions on ChildProfile", res.data);
+      console.log(
+        "loadFood from foodActions on ChildProfile",
+        res.data.child_food
+      );
       dispatch({
         type: LOAD_FOOD,
         payload: res.data
