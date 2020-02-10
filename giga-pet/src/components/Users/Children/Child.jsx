@@ -1,11 +1,27 @@
 import React from "react";
+import api from "../../utils/api";
 import { Link } from "react-router-dom";
 // import ChildProfile from "../ChildProfile";
 
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { loadChildren } from "../../../redux/actions/childActions";
 
 function Child(props) {
   console.log("child component props", props);
+  const dispatch = useDispatch();
+
+  const deleteChild = () => {
+    api()
+      .delete(`/api/child/${props.child.id}`)
+      .then(res => {
+        console.log("delete response: ", res.data);
+        dispatch(loadChildren(props));
+      })
+      .catch(err => {
+        console.log("DELETE error message: ", err.response);
+      });
+  };
 
   return (
     <ContainerDiv>
@@ -24,7 +40,9 @@ function Child(props) {
         >
           <button className="btn-left">Edit</button>
         </Link>
-        <button className="btn-right">Delete</button>
+        <button onClick={deleteChild} className="btn-right">
+          Delete
+        </button>
       </div>
       <Link
         className="child-card"
