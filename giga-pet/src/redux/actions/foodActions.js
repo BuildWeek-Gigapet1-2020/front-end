@@ -1,6 +1,6 @@
 import api from "../../components/utils/api";
 // import { store } from "../store/index";
-import { NEW_FOOD_POST, LOAD_FOOD } from "./types";
+import { NEW_FOOD_POST, LOAD_FOOD, SORT_FOOD } from "./types";
 
 export const newFood = (food, props) => dispatch => {
   // dispatch({type: NEW_CHILD_POST})
@@ -35,4 +35,12 @@ export const loadFood = props => dispatch => {
         payload: res.data
       });
     });
+};
+
+export const sortFood = props => dispatch => {
+  console.log("sortFood props", props);
+  dispatch({
+    type: SORT_FOOD,
+    payload: props
+  });
 };

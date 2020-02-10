@@ -1,4 +1,4 @@
-import { NEW_FOOD_POST, LOAD_FOOD } from "../actions/types";
+import { NEW_FOOD_POST, LOAD_FOOD, SORT_FOOD } from "../actions/types";
 const initialState = {
   child: {
     child: {
@@ -13,7 +13,6 @@ const initialState = {
         id: 1,
         name: "food",
         created_at: "2020-02-01 16:48:49",
-        updated_at: "2020-02-01 16:48:49",
         child_id: 1,
         type: "fruits",
         servings: 2
@@ -47,14 +46,25 @@ const initialState = {
 export const foodReducer = (state = initialState, action) => {
   switch (action.type) {
     case NEW_FOOD_POST:
+      console.log("NEW_FOOD_POST child_food:", state.child.child_food);
       return {
         ...state,
-        child: [...state.child.child_food, action.payload]
+        child_food: [...state.child.child_food, action.payload]
       };
     case LOAD_FOOD:
       return {
         ...state,
         child: action.payload
+      };
+    case SORT_FOOD:
+      return {
+        ...state,
+        child: {
+          child: { ...state.child.child },
+          child_food: action.payload
+          // monster: [...state.monster]
+        },
+        children: [...state.children]
       };
     default:
       return state;

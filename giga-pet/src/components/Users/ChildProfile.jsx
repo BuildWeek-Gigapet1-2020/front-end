@@ -8,23 +8,25 @@ import moment from "moment";
 import styled from "styled-components";
 
 import { useSelector, useDispatch } from "react-redux";
-import { loadFood } from "../../redux/actions/foodActions";
+import { loadFood, sortFood } from "../../redux/actions/foodActions";
 import { loadChild } from "../../redux/actions/childActions";
 
 function ChildProfile(props) {
   console.log("Child profile props", props);
 
   const childList = useSelector(state => state.foodReducer);
+  const childProfile = useSelector(state => state.childReducer);
   const dispatch = useDispatch();
 
   const child = childList.child;
-  const childFood = childList.child.child_food;
-
+  let childFood = childList.child.child_food;
+  const name = childProfile.child.child.name;
   // const id = props.location.state.id;
   // const name = props.location.state.name;
 
   console.log("childList", childList);
   console.log("childFood", childFood);
+  console.log("child2 from childReducer", childProfile.child.child.name);
 
   useEffect(() => {
     dispatch(loadFood(props));
@@ -45,7 +47,7 @@ function ChildProfile(props) {
   const handleSubmit = event => {
     event.preventDefault();
 
-    console.log("Food: ", childFood);
+    console.log("childList in handleSubmit 1", childList);
     let results = [];
     for (let i = 0; i < type.length; i++) {
       for (let j = 0; j < childFood.length; j++) {
@@ -54,7 +56,9 @@ function ChildProfile(props) {
         }
       }
     }
-    dispatch(loadFood(results));
+    dispatch(sortFood(results));
+    // childFood = childList.sorted_food;
+    console.log("childFood handleSubmit", childFood);
     setType([]);
   };
 
@@ -63,6 +67,9 @@ function ChildProfile(props) {
     setType([...type, event.target.value]);
   };
 
+  function resetList() {
+    window.location.reload(false);
+  }
   // console.log("FOOOOOOOD", type);
   /*
     1. loop over the last week of dates and push to new array *
@@ -121,7 +128,7 @@ function ChildProfile(props) {
       {/* <Child /> */}
       {/* {console.log("food", food)} */}
       {/* {console.log("child", child)} */}
-      {/* <h1>Hello, {name}!</h1> */}
+      <h1>Hello, {name}!</h1>
       <img
         src="https://cdn3.iconfinder.com/data/icons/monsters-3/66/69-512.png"
         alt="trash"
@@ -232,17 +239,22 @@ function ChildProfile(props) {
         </label>
         <button type="submit">Search</button>
       </form>
+      <button type="button" onClick={resetList}>
+        Reset
+      </button>
       {weekly()}
       {/* {console.log(date)} */}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
       {/* 3) list of food with edit and delete button next to each item */}
-      {childFood.map((e, i) => {
-        return (
-          <div key={i}>
-            <Food food={e} index={i} />
-          </div>
-        );
-      })}
+      <div className="food-container">
+        {childFood.map((e, i) => {
+          return (
+            <div key={i}>
+              <Food food={e} index={i} />
+            </div>
+          );
+        })}
+      </div>
       {/* 4) add new food button */}
       {/* 5) display a picture of the child's monster choice */}
       {/* <Route exact path="/add-food"></Route>
@@ -255,4 +267,9 @@ function ChildProfile(props) {
 
 export default ChildProfile;
 
-const ContainerDiv = styled.div``;
+const ContainerDiv = styled.div`
+  .food-container {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+  }
+`;
