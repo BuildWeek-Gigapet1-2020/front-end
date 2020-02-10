@@ -34,10 +34,35 @@ function Child(props) {
   return (
     <ContainerDiv>
       {/* <Route exact path={`/api/child/${props.child.id}`} component={ChildProfile} /> */}
-      <div className="edit-delete">
+      <div className="child-box">
+        <div className="edit-delete">
+          <Link
+            to={{
+              pathname: `edit-child/${props.child.id}`,
+              state: {
+                id: props.child.id,
+                name: props.child.name,
+                monster_id: props.child.monster_id,
+                parent_id: props.child.parent_id
+              }
+            }}
+          >
+            <button className="btn-left">Edit</button>
+          </Link>
+          <button onClick={deleteChild} className="btn-right">
+            Delete
+          </button>
+        </div>
+
+        <img src={monster_id == 1 ? orange : null} alt="" />
+        <img src={monster_id == 2 ? red : null} alt="" />
+        <img src={monster_id == 3 ? green : null} alt="" />
+        <img src={monster_id == 4 ? purple : null} alt="" />
+
         <Link
+          className="child-card"
           to={{
-            pathname: `edit-child/${props.child.id}`,
+            pathname: `child/${props.child.id}`,
             state: {
               id: props.child.id,
               name: props.child.name,
@@ -46,32 +71,9 @@ function Child(props) {
             }
           }}
         >
-          <button className="btn-left">Edit</button>
+          <h2>{props.child.name}</h2>
         </Link>
-        <button onClick={deleteChild} className="btn-right">
-          Delete
-        </button>
       </div>
-
-      <img src={monster_id == 1 ? orange : null} alt="" />
-      <img src={monster_id == 2 ? red : null} alt="" />
-      <img src={monster_id == 3 ? green : null} alt="" />
-      <img src={monster_id == 4 ? purple : null} alt="" />
-
-      <Link
-        className="child-card"
-        to={{
-          pathname: `child/${props.child.id}`,
-          state: {
-            id: props.child.id,
-            name: props.child.name,
-            monster_id: props.child.monster_id,
-            parent_id: props.child.parent_id
-          }
-        }}
-      >
-        <h2>{props.child.name}</h2>
-      </Link>
     </ContainerDiv>
   );
 }
@@ -79,10 +81,26 @@ function Child(props) {
 export default Child;
 
 const ContainerDiv = styled.div`
+  // border: 1px solid red;
+
+  a {
+    text-decoration: none;
+  }
+
   h2 {
     font-size: 2rem;
+    margin-bottom: 0px;
+    color: #ffffff;
+    text-shadow 2px 2px #74b456;
   }
   img {
+    margin-top: 5%;
     height: 130px;
+  }
+  .child-box {
+    background-color: rgb(255, 255, 255, 0.35);
+    padding: 5%;
+    margin: 5%;
+    border-radius: 25px;
   }
 `;
