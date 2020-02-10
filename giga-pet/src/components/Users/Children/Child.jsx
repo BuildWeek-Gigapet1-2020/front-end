@@ -7,10 +7,18 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { loadChildren } from "../../../redux/actions/childActions";
 
+import orange from "../../../images/mon-orange-two.png";
+import red from "../../../images/mon-red-four.png";
+import green from "../../../images/mon-teal-one.png";
+import pink from "../../../images/mon-pink-three.png";
+import purple from "../../../images/mon-purple.png";
+
 function Child(props) {
   console.log("child component props", props);
   const dispatch = useDispatch();
 
+  const monster_id = props.child.monster_id;
+  console.log("monster_id variable", monster_id);
   const deleteChild = () => {
     api()
       .delete(`/api/child/${props.child.id}`)
@@ -44,6 +52,12 @@ function Child(props) {
           Delete
         </button>
       </div>
+
+      <img src={monster_id == 1 ? orange : null} alt="" />
+      <img src={monster_id == 2 ? red : null} alt="" />
+      <img src={monster_id == 3 ? green : null} alt="" />
+      <img src={monster_id == 4 ? purple : null} alt="" />
+
       <Link
         className="child-card"
         to={{
@@ -67,5 +81,8 @@ export default Child;
 const ContainerDiv = styled.div`
   h2 {
     font-size: 2rem;
+  }
+  img {
+    height: 130px;
   }
 `;
