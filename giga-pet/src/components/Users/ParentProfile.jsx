@@ -26,7 +26,9 @@ function ParentProfile(props) {
     <ContainerDiv>
       {/* <Parent name={props.history.location.state.credentials.parent_name} /> */}
       <h1>Parent Profile</h1>
-      <Link to="add-child">Add Child</Link>
+      <Link to="add-child">
+        <span>+</span> Add Child
+      </Link>
       <div className="child-container">
         {childState.children.map((entry, index) => {
           return (
@@ -48,8 +50,26 @@ function ParentProfile(props) {
 export default ParentProfile;
 
 const ContainerDiv = styled.div`
+  h1 {
+    font-size: 4rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+  }
   .child-container {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
+  }
+  a {
+    text-decoration: none;
+    font-size: 2.5rem;
+    color: #71d044;
+    text-shadow: -2px 0px #ffffff;
+  }
+
+  .add-child {
+  }
+  span {
+    // font-size: 3rem;
+    font-weight: 800;
   }
 `;
