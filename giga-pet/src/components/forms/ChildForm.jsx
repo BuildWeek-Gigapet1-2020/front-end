@@ -26,7 +26,11 @@ function ChildForm(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(newChild(child, props));
+    if(child.name.length >= 1) {
+      dispatch(newChild(child, props));
+    } else {
+      alert("Name field is required");
+    }
   };
 
   return (
