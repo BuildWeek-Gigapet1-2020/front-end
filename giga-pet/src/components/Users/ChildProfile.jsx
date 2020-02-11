@@ -136,124 +136,140 @@ function ChildProfile(props) {
       {/* <Child /> */}
       {/* {console.log("food", food)} */}
       {/* {console.log("child", child)} */}
-      <Link to="/parent-profile">
-        <button className="btn-parent">&lt; Parent Profile</button>
-      </Link>
-      <h1>Hello, {name}!</h1>
-      <img src={monsterId == 1 ? orange : null} className="monster" alt="" />
-      <img src={monsterId == 2 ? red : null} className="monster" alt="" />
-      <img src={monsterId == 3 ? green : null} className="monster" alt="" />
-      <img src={monsterId == 4 ? purple : null} className="monster" alt="" />
 
-      <Link
-        to={{
-          pathname: "/food-form",
-          state: { id: props.match.params.id }
-        }}
-        className="food-button"
-      >
-        + Add Food
-        <br />
-      </Link>
-      {/* <h2></h2> */}
-      {/* 1) drop down for selecting: recent, monthly, weekly */}
-      {/* 
+      <div className="header-container">
+        <Link to="/parent-profile">
+          <button className="btn-parent">&lt; Parent Profile</button>
+        </Link>
+        <div className="name-monster">
+          <h1>Hello, {name}!</h1>
+          <img
+            src={monsterId == 1 ? orange : null}
+            className="monster"
+            alt=""
+          />
+          <img src={monsterId == 2 ? red : null} className="monster" alt="" />
+          <img src={monsterId == 3 ? green : null} className="monster" alt="" />
+          <img
+            src={monsterId == 4 ? purple : null}
+            className="monster"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div className="add-sort">
+        <Link
+          to={{
+            pathname: "/food-form",
+            state: { id: props.match.params.id }
+          }}
+          className="food-button"
+        >
+          + Add Food
+          <br />
+        </Link>
+
+        {/* <h2></h2> */}
+        {/* 1) drop down for selecting: recent, monthly, weekly */}
+        {/* 
           1. Create dropdown with options.
           2. Create handleChange, set value of dropdown to state.
           3. Type Daily/Weekly/Monthly.
             Moment.js, 
       */}
-      <br />
-      <form onSubmit={handleSubmit}>
-        <select
-          name="current_selection"
-          value={date.current_selection}
-          onChange={handleChange}
-          className="dropdown"
-        >
-          <option value="daily" label="Daily" />
-          <option value="weekly" label="Weekly" />
-          <option value="monthly" label="Monthly" />
-        </select>
+        <br />
+        <form onSubmit={handleSubmit}>
+          <select
+            name="current_selection"
+            value={date.current_selection}
+            onChange={handleChange}
+            className="dropdown"
+          >
+            <option value="daily" label="Daily" />
+            <option value="weekly" label="Weekly" />
+            <option value="monthly" label="Monthly" />
+          </select>
 
-        <div className="check-sort">
-          <label className="checkbox-styles">
-            <input
-              type="checkbox"
-              label="Fruit"
-              name="fruit"
-              value="fruit"
-              onChange={handleChange}
-            />{" "}
-            Fruit
-          </label>
-          <label className="checkbox-styles">
-            <input
-              type="checkbox"
-              label="Vegetable"
-              name="vegetable"
-              value="vegetable"
-              onChange={handleChange}
-            />{" "}
-            Vegetable
-          </label>
-          <label className="checkbox-styles">
-            <input
-              type="checkbox"
-              label="Whole Grains"
-              name="whole-grains"
-              value="whole-grains"
-              onChange={handleChange}
-            />{" "}
-            Whole Grains
-          </label>
-          <label className="checkbox-styles">
-            <input
-              type="checkbox"
-              label="Meat"
-              name="meat"
-              value=""
-              value="meat"
-              onChange={handleChange}
-            />{" "}
-            Meat
-          </label>
-          <label className="checkbox-styles">
-            <input
-              type="checkbox"
-              label="Dairy"
-              name="dairy"
-              value="dairy"
-              onChange={handleChange}
-            />{" "}
-            Dairy
-          </label>
-          <label className="checkbox-styles">
-            <input
-              type="checkbox"
-              label="Fats/Oils"
-              name="fats-oils"
-              value="fats-oils"
-              onChange={handleChange}
-            />{" "}
-            Fats/Oils
-          </label>
-          <label className="checkbox-styles">
-            <input
-              type="checkbox"
-              label="Treats"
-              name="treats"
-              value="treats"
-              onChange={handleChange}
-            />{" "}
-            Treats
-          </label>
-        </div>
-        <button type="submit">Search</button>
-      </form>
-      <button type="button" onClick={resetList}>
-        Reset
-      </button>
+          <div className="check-sort">
+            <label className="checkbox-styles">
+              <input
+                type="checkbox"
+                label="Fruit"
+                name="fruit"
+                value="fruit"
+                onChange={handleChange}
+              />{" "}
+              Fruit
+            </label>
+            <label className="checkbox-styles">
+              <input
+                type="checkbox"
+                label="Vegetable"
+                name="vegetable"
+                value="vegetable"
+                onChange={handleChange}
+              />{" "}
+              Vegetable
+            </label>
+            <label className="checkbox-styles">
+              <input
+                type="checkbox"
+                label="Whole Grains"
+                name="whole-grains"
+                value="whole-grains"
+                onChange={handleChange}
+              />{" "}
+              Whole Grains
+            </label>
+            <label className="checkbox-styles">
+              <input
+                type="checkbox"
+                label="Meat"
+                name="meat"
+                value=""
+                value="meat"
+                onChange={handleChange}
+              />{" "}
+              Meat
+            </label>
+            <label className="checkbox-styles">
+              <input
+                type="checkbox"
+                label="Dairy"
+                name="dairy"
+                value="dairy"
+                onChange={handleChange}
+              />{" "}
+              Dairy
+            </label>
+            <label className="checkbox-styles">
+              <input
+                type="checkbox"
+                label="Fats/Oils"
+                name="fats-oils"
+                value="fats-oils"
+                onChange={handleChange}
+              />{" "}
+              Fats/Oils
+            </label>
+            <label className="checkbox-styles">
+              <input
+                type="checkbox"
+                label="Treats"
+                name="treats"
+                value="treats"
+                onChange={handleChange}
+              />{" "}
+              Treats
+            </label>
+          </div>
+          <button type="submit">Search</button>
+          <button type="button" onClick={resetList}>
+            Reset
+          </button>
+        </form>
+      </div>
       {weekly()}
       {/* {console.log(date)} */}
       {/* 2) checkbox to sort by food type: fruit, vegetable, whole-grains, meat, dairy, fats-oils, treats */}
@@ -280,13 +296,68 @@ function ChildProfile(props) {
 export default ChildProfile;
 
 const ContainerDiv = styled.div`
+  .name-monster {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-top: 3%;
+    margin-bottom: 0px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  a.food-button {
+    font-size: 2.5rem;
+    color: rgb(113, 208, 68);
+    text-shadow: rgb(255, 255, 255) -2px 0px;
+    text-decoration: none;
+  }
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    a {
+      padding: 1%;
+      width: 212px;
+    }
+  }
+
+  .add-sort {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: 0 auto;
+  }
+  button.btn-parent {
+    background-color: rgb(116, 180, 86);
+    font-family: "Bubblegum Sans", cursive;
+    width: 100%;
+    box-shadow: rgb(72, 119, 61) 2px 7px 8px 0px;
+    color: white;
+    font-size: 2.2rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(75, 143, 41);
+    border-image: initial;
+    margin: 3%;
+    border-radius: 10px;
+    padding: 1%;
+    display: flex;
+  }
   .monster {
-    width: 15%;
+    width: 50%;
+    margin: 0 auto;
   }
   form {
     display: flex;
     flex-direction: column;
-    width: 22%;
+    width: 45%;
 
     select {
       width: 50%;
