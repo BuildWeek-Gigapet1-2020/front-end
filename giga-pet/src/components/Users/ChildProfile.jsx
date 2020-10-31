@@ -109,7 +109,7 @@ function ChildProfile(props) {
 			console.log("Dates: ", newWeeklyArray)
 			let filteredWeeklyArray = []
 			foodDateArray.filter((e) => {
-				filteredWeeklyArray.push(newWeeklyArray.includes(e))
+				return filteredWeeklyArray.push(newWeeklyArray.includes(e))
 			})
 			console.log("Filtered: ", filteredWeeklyArray)
 			//end weekly check code
@@ -139,14 +139,18 @@ function ChildProfile(props) {
 				<div className="name-monster">
 					<h1>Hello, {name}!</h1>
 					<img
-						src={monsterId == 1 ? orange : null}
+						src={monsterId === 1 ? orange : null}
 						className="monster"
 						alt=""
 					/>
-					<img src={monsterId == 2 ? red : null} className="monster" alt="" />
-					<img src={monsterId == 3 ? green : null} className="monster" alt="" />
+					<img src={monsterId === 2 ? red : null} className="monster" alt="" />
 					<img
-						src={monsterId == 4 ? purple : null}
+						src={monsterId === 3 ? green : null}
+						className="monster"
+						alt=""
+					/>
+					<img
+						src={monsterId === 4 ? purple : null}
 						className="monster"
 						alt=""
 					/>
