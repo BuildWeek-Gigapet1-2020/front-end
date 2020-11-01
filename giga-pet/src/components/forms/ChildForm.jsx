@@ -5,7 +5,7 @@ import { newChild } from "../../redux/actions/childActions"
 
 import styled from "styled-components"
 
-// import logo from "../../images/giga-pet-logo.png"
+import logo from "../../images/giga-pet-logo.png"
 import orange from "../../images/mon-orange-two.png"
 import red from "../../images/mon-red-four.png"
 import green from "../../images/mon-teal-one.png"
