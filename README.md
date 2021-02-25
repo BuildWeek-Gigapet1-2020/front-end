@@ -43,7 +43,7 @@ Welcome to GigaPet! This application is built to help encourage children to choo
 
 -   Reusable UI Components
 
-#### Front end deployed to (https://jt-cgol.netlify.app/)
+#### Front end deployed to (https://gigapet1-build-week-2020.netlify.app/)
 
 # Installation Instructions
 
